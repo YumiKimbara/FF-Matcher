@@ -1,0 +1,15 @@
+.homeWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+.imageWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.image {
+  width: 70%;
+}
