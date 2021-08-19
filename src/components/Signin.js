@@ -1,13 +1,13 @@
 import { Card, Button } from "@material-ui/core";
 
-import classes from "./Login.module.css";
+import classes from "./Signin.module.css";
 
-const Login = () => {
+const Signin = () => {
   return (
     <>
       <div className={classes.cardWrapper}>
         <Card className={classes.card}>
-          <div className={classes.loginContent}>
+          <div className={classes.SigninContent}>
             <form className={classes.form}>
               <input className={classes.input} type="text" placeholder="name" />
               <input
@@ -22,7 +22,7 @@ const Login = () => {
               />
             </form>
             <Button className={classes.button} variant="outlined">
-              Login
+              Signin
             </Button>
           </div>
         </Card>
@@ -31,4 +31,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signin;

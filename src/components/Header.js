@@ -9,8 +9,8 @@ const Header = () => {
         <Link to="/">
           <h1 className={classes.logo}>This is header</h1>
         </Link>
-        <Link to="/login">
-          <h1>Login</h1>
+        <Link to="/signin">
+          <h1>Signin</h1>
         </Link>
       </div>
     </>
