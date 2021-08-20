@@ -7,17 +7,19 @@ const Question = () => {
     <>
       <div className={classes.cardWrapper}>
         <Card className={classes.card}>
-          <h2>Question 1</h2>
-          <p>1/10</p>
+          <div className={classes.title}>
+            <h2>Question 1</h2>
+            <p>1/10</p>
+          </div>
           <div className={classes.cardContent}>
             <p>Which period do you want to go?</p>
             <div>
-              <Button className={classes.qButton} variant="outlined">
-                Ancient
-              </Button>
-              <Button className={classes.qButton} variant="outlined">
-                Modern
-              </Button>
+              <div className={classes.qButton}>
+                <Button variant="outlined">Ancient</Button>
+              </div>
+              <div className={classes.qButton}>
+                <Button variant="outlined">Modern</Button>
+              </div>
             </div>
           </div>
         </Card>

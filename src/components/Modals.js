@@ -1,8 +1,9 @@
-import { Button, Modal, Backdrop, Fade } from "@material-ui/core";
+import { Button, Modal, Backdrop, Fade, Card } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import { signinActions } from "../store/signin";
 import { loginActions } from "../store/login";
 import classes from "./Modals.module.css";
+import { Link } from "react-router-dom";
 
 const Modals = () => {
   const dispatch = useDispatch();
@@ -60,10 +61,16 @@ const Modals = () => {
                   />
                 )}
               </form>
-              {login && <p>forget your password?</p>}
-              <Button className={classes.button} variant="outlined">
-                {signin ? "Sign in" : "Log in"}
-              </Button>
+              {login && (
+                <Link to="/forgotpw">
+                  <p className={classes.forgotPw}>forgot your password?</p>
+                </Link>
+              )}
+              <div className={classes.button}>
+                <Button variant="outlined">
+                  {signin ? "Sign in" : "Log in"}
+                </Button>
+              </div>
             </div>
           </div>
         </Fade>

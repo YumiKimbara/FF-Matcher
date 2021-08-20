@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Home from "../components/Home";
 import Question from "../components/Question";
 import Signin from "../components/Signin";
+import ForgotPw from "../components/ForgotPw";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Header />
         <Switch>
           <Route exact path="/signin" component={Signin} />
+          <Route exact path="/forgotpw" component={ForgotPw} />
           <Route exact path="/" component={Home} />
           <Route exact path="/question" component={Question} />
         </Switch>
