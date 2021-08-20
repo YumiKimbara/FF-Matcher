@@ -1,14 +1,20 @@
 import { Button, Modal, Backdrop, Fade } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import { signinActions } from "../store/signin";
+import { loginActions } from "../store/login";
 import classes from "./Modals.module.css";
 
 const Modals = () => {
   const dispatch = useDispatch();
   const signin = useSelector((state) => state.signin.showSignin);
+  const login = useSelector((state) => state.login.showLogin);
 
   const closeSigninHandler = () => {
     dispatch(signinActions.closeSigninPage());
+  };
+
+  const closeLoginHandler = () => {
+    dispatch(loginActions.closeLoginPage());
   };
 
   return (
@@ -17,23 +23,25 @@ const Modals = () => {
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         className={classes.modal}
-        open={signin}
-        onClose={closeSigninHandler}
+        open={signin ? signin : login}
+        onClose={signin ? closeSigninHandler : closeLoginHandler}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
         }}
       >
-        <Fade in={signin}>
+        <Fade in={signin ? signin : login}>
           <div className={(classes.cardWrapper, classes.modalBg)}>
             <div className={classes.SigninContent}>
               <form className={classes.form}>
-                <input
-                  className={classes.input}
-                  type="text"
-                  placeholder="name"
-                />
+                {signin && (
+                  <input
+                    className={classes.input}
+                    type="text"
+                    placeholder="name"
+                  />
+                )}
                 <input
                   className={classes.input}
                   type="text"
@@ -44,14 +52,17 @@ const Modals = () => {
                   type="text"
                   placeholder="password"
                 />
-                <input
-                  className={classes.input}
-                  type="text"
-                  placeholder="password confirmation"
-                />
+                {signin && (
+                  <input
+                    className={classes.input}
+                    type="text"
+                    placeholder="password confirmation"
+                  />
+                )}
               </form>
+              {login && <p>forget your password?</p>}
               <Button className={classes.button} variant="outlined">
-                Signin
+                {signin ? "Sign in" : "Log in"}
               </Button>
             </div>
           </div>
