@@ -12,10 +12,10 @@ const Question = () => {
           <div className={classes.cardContent}>
             <p>Which period do you want to go?</p>
             <div>
-              <Button className={classes.button} variant="outlined">
+              <Button className={classes.qButton} variant="outlined">
                 Ancient
               </Button>
-              <Button className={classes.button} variant="outlined">
+              <Button className={classes.qButton} variant="outlined">
                 Modern
               </Button>
             </div>
