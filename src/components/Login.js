@@ -1,5 +1,11 @@
-import { Button } from "@material-ui/core";
+import Modals from "./Modals";
 
 const Login = () => {
-  return <></>;
+  return (
+    <>
+      <Modals />
+    </>
+  );
 };
+
+export default Login;
