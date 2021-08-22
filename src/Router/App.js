@@ -5,6 +5,7 @@ import Home from "../components/Home";
 import Question from "../components/Question";
 import Signin from "../components/Signin";
 import ForgotPw from "../components/ForgotPw";
+import Result from "../components/Result";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/forgotpw" component={ForgotPw} />
           <Route exact path="/" component={Home} />
           <Route exact path="/question" component={Question} />
+          <Route exact path="/result" component={Result} />
         </Switch>
       </Router>
     </>

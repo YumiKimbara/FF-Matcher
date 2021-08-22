@@ -17,13 +17,15 @@
 }
 
 .button {
-  margin: 5rem;
+  margin: 4rem;
 }
 
 .input {
   width: 15rem;
-  padding: 0.5rem;
+  padding: 1rem;
   margin: 0.5rem;
+  border: none;
+  background-color: #e9ecef;
 }
 
 .modalBg {

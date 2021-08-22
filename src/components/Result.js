@@ -1,7 +1,10 @@
 const Result = () => {
+  const ff9 = "/images/ff9.png";
+
   return (
     <>
-      <h1>This is Result</h1>
+      <h3>Your favorite Final Fantasy is 9</h3>
+      <img src={ff9} alt="ffImage" />
     </>
   );
 };

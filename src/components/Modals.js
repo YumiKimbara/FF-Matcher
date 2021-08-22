@@ -1,4 +1,8 @@
 import { Button, Modal, Backdrop, Fade, Card } from "@material-ui/core";
+import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
+import MailOutlineIcon from "@material-ui/icons/MailOutline";
+import LockIcon from "@material-ui/icons/Lock";
+
 import { useSelector, useDispatch } from "react-redux";
 import { signinActions } from "../store/signin";
 import { loginActions } from "../store/login";
@@ -37,28 +41,40 @@ const Modals = () => {
             <div className={classes.SigninContent}>
               <form className={classes.form}>
                 {signin && (
-                  <input
-                    className={classes.input}
-                    type="text"
-                    placeholder="name"
-                  />
+                  <div>
+                    <PersonOutlineIcon />
+                    <input
+                      className={classes.input}
+                      type="text"
+                      placeholder="name"
+                    />
+                  </div>
                 )}
-                <input
-                  className={classes.input}
-                  type="text"
-                  placeholder="email"
-                />
-                <input
-                  className={classes.input}
-                  type="text"
-                  placeholder="password"
-                />
-                {signin && (
+                <div>
+                  <MailOutlineIcon />
                   <input
                     className={classes.input}
                     type="text"
-                    placeholder="password confirmation"
+                    placeholder="email"
                   />
+                </div>
+                <div>
+                  <LockIcon />
+                  <input
+                    className={classes.input}
+                    type="text"
+                    placeholder="password"
+                  />
+                </div>
+                {signin && (
+                  <div>
+                    <LockIcon />
+                    <input
+                      className={classes.input}
+                      type="text"
+                      placeholder="password confirmation"
+                    />
+                  </div>
                 )}
               </form>
               {login && (
