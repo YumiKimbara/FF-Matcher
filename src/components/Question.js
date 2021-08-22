@@ -1,10 +1,23 @@
+import { useState, useEffect } from "react";
 import { Card, Button } from "@material-ui/core";
 
 import classes from "./Question.module.css";
 
 const Question = () => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch("/questions")
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then((jsonData) => setUsers(jsonData));
+  });
   return (
     <>
+      {console.log(users)}
       <div className={classes.cardWrapper}>
         <Card className={classes.card}>
           <div className={classes.title}>
