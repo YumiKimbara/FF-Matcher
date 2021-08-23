@@ -1,7 +1,17 @@
-import { Button, Modal, Backdrop, Fade, Card } from "@material-ui/core";
+import {
+  Button,
+  Modal,
+  Backdrop,
+  Fade,
+  Card,
+  TextField,
+} from "@material-ui/core";
 import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockIcon from "@material-ui/icons/Lock";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 import { useSelector, useDispatch } from "react-redux";
 import { signinActions } from "../store/signin";
@@ -41,38 +51,58 @@ const Modals = () => {
             <div className={classes.SigninContent}>
               <form className={classes.form}>
                 {signin && (
-                  <div>
-                    <PersonOutlineIcon />
-                    <input
-                      className={classes.input}
-                      type="text"
+                  <div className={classes.input}>
+                    <TextField
+                      variant="filled"
                       placeholder="name"
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment>
+                            <PersonOutlineIcon />
+                          </InputAdornment>
+                        ),
+                      }}
                     />
                   </div>
                 )}
-                <div>
-                  <MailOutlineIcon />
-                  <input
-                    className={classes.input}
-                    type="text"
+                <div className={classes.input}>
+                  <TextField
+                    variant="filled"
                     placeholder="email"
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment>
+                          <MailOutlineIcon />
+                        </InputAdornment>
+                      ),
+                    }}
                   />
                 </div>
-                <div>
-                  <LockIcon />
-                  <input
-                    className={classes.input}
-                    type="text"
+                <div className={classes.input}>
+                  <TextField
+                    variant="filled"
                     placeholder="password"
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment>
+                          <LockIcon />
+                        </InputAdornment>
+                      ),
+                    }}
                   />
                 </div>
                 {signin && (
-                  <div>
-                    <LockIcon />
-                    <input
-                      className={classes.input}
-                      type="text"
+                  <div className={classes.input}>
+                    <TextField
+                      variant="filled"
                       placeholder="password confirmation"
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment>
+                            <LockIcon />
+                          </InputAdornment>
+                        ),
+                      }}
                     />
                   </div>
                 )}

@@ -17,25 +17,20 @@
 }
 
 .button {
-  margin: 4rem;
+  position: absolute;
+  bottom: 3rem;
 }
 
 .input {
-  width: 15rem;
-  padding: 1rem;
   margin: 0.5rem;
-  border: none;
   background-color: #e9ecef;
 }
 
 .modalBg {
   background-color: white;
   width: 40%;
-  height: 60%;
+  height: 65%;
   margin: 10% auto;
   border-radius: 5px;
-}
-
-.forgotPw {
-  color: #484848;
+  position: relative;
 }
