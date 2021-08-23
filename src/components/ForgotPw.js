@@ -12,7 +12,7 @@ const ForgotPw = () => {
           <h3>Reset password</h3>
           <div className={classes.content}>
             <form>
-              <div>
+              <div className={classes.input}>
                 <TextField
                   variant="filled"
                   placeholder="email"

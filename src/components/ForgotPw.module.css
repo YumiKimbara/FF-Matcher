@@ -7,6 +7,8 @@
 .card {
   width: 40%;
   padding: 2rem;
+  min-height: 13rem;
+  position: relative;
 }
 
 .content {
@@ -16,13 +18,11 @@
 }
 
 .input {
-  width: 15rem;
-  padding: 1rem;
-  margin: 2rem 0.5rem;
-  border: none;
-  background-color: #e9ecef;
+  margin: 2rem;
 }
 
 .button {
   margin-top: 2rem;
+  position: absolute;
+  bottom: 3rem;
 }
