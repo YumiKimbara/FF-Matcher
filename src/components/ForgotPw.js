@@ -1,5 +1,6 @@
-import { Card, Button } from "@material-ui/core";
+import { Card, Button, TextField } from "@material-ui/core";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
 import classes from "./ForgotPw.module.css";
 
@@ -12,11 +13,16 @@ const ForgotPw = () => {
           <div className={classes.content}>
             <form>
               <div>
-                <MailOutlineIcon />
-                <input
-                  className={classes.input}
-                  type="text"
+                <TextField
+                  variant="filled"
                   placeholder="email"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment>
+                        <MailOutlineIcon />
+                      </InputAdornment>
+                    ),
+                  }}
                 />
               </div>
             </form>
