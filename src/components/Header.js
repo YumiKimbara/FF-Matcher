@@ -23,6 +23,7 @@ const Header = () => {
   };
 
   const openLoginHandler = () => {
+    console.log("login");
     dispatch(loginActions.openLoginPage());
   };
 
@@ -49,7 +50,7 @@ const Header = () => {
             <div className={classes.signinLogin}>
               <Link
                 to={{
-                  pathname: `/home/${i.id}`,
+                  pathname: `/${i.id}`,
                   state: { background: location },
                 }}
               >
