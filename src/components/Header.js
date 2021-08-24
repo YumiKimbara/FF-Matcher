@@ -19,6 +19,7 @@ const Header = () => {
   const login = useSelector((state) => state.login.showLogin);
 
   const openSigninHandler = () => {
+    console.log("signin");
     dispatch(signinActions.openSigninPage());
   };
 

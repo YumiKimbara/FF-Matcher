@@ -13,6 +13,7 @@ function App() {
 
   return (
     <>
+      {console.log(background)}
       <Header />
       <Switch location={background || location}>
         <Route exact path="/forgotpw" component={ForgotPw} />
@@ -20,7 +21,7 @@ function App() {
         <Route exact path="/question" component={Question} />
         <Route exact path="/result" component={Result} />
       </Switch>
-      {background && <Route exact path="/:id" children={<Modals />} />}
+      {background && <Route exact path="/:id" component={Modals} />}
     </>
   );
 }

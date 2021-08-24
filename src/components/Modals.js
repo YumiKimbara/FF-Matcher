@@ -34,6 +34,11 @@ const Modals = () => {
     dispatch(loginActions.closeLoginPage());
   };
 
+  const back = (e) => {
+    e.stopPropagation();
+    history.goBack();
+  };
+
   return (
     <>
       <Modal
@@ -41,6 +46,7 @@ const Modals = () => {
         aria-describedby="transition-modal-description"
         className={classes.modal}
         open={signin ? signin : login}
+        onClick={back}
         onClose={signin ? closeSigninHandler : closeLoginHandler}
         closeAfterTransition
         BackdropComponent={Backdrop}
