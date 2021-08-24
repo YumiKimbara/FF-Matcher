@@ -1,5 +1,5 @@
 import classes from "./Header.module.css";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { Link, useLocation } from "react-router-dom";
 import { signinActions } from "../store/signin";
@@ -15,16 +15,11 @@ const Header = () => {
   let location = useLocation();
   const dispatch = useDispatch();
 
-  const signin = useSelector((state) => state.signin.showSignin);
-  const login = useSelector((state) => state.login.showLogin);
-
   const openSigninHandler = () => {
-    console.log("signin");
     dispatch(signinActions.openSigninPage());
   };
 
   const openLoginHandler = () => {
-    console.log("login");
     dispatch(loginActions.openLoginPage());
   };
 

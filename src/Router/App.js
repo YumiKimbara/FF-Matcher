@@ -13,7 +13,6 @@ function App() {
 
   return (
     <>
-      {console.log(background)}
       <Header />
       <Switch location={background || location}>
         <Route exact path="/forgotpw" component={ForgotPw} />
