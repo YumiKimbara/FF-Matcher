@@ -17,9 +17,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { signinActions } from "../store/signin";
 import { loginActions } from "../store/login";
 import classes from "./Modals.module.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 
 const Modals = () => {
+  const history = useHistory();
+  const { id } = useParams();
   const dispatch = useDispatch();
   const signin = useSelector((state) => state.signin.showSignin);
   const login = useSelector((state) => state.login.showLogin);

@@ -1,12 +1,18 @@
 import classes from "./Header.module.css";
 import { useSelector, useDispatch } from "react-redux";
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { signinActions } from "../store/signin";
 import { loginActions } from "../store/login";
 import { Button } from "@material-ui/core";
 
+const authData = [
+  { id: "signin", title: "Signin" },
+  { id: "login", title: "Login" },
+];
+
 const Header = () => {
+  let location = useLocation();
   const dispatch = useDispatch();
 
   const signin = useSelector((state) => state.signin.showSignin);
@@ -25,6 +31,11 @@ const Header = () => {
     dispatch(loginActions.closeLoginPage());
   };
 
+  const authData = [
+    { id: "signin", title: "Signin", handler: openSigninHandler },
+    { id: "login", title: "Login", handler: openLoginHandler },
+  ];
+
   return (
     <>
       <div className={classes.header}>
@@ -33,14 +44,22 @@ const Header = () => {
             Logo
           </h1>
         </Link>
-        <div className={classes.signinLogin}>
-          <Button className={classes.signin} onClick={openSigninHandler}>
-            Sign in
-          </Button>
-          <Button className={classes.login} onClick={openLoginHandler}>
-            Log in
-          </Button>
-        </div>
+        {authData.map((i) => (
+          <div>
+            <div className={classes.signinLogin}>
+              <Link
+                to={{
+                  pathname: `/home/${i.id}`,
+                  state: { background: location },
+                }}
+              >
+                <Button className={classes.signin} onClick={i.handler}>
+                  {i.title}
+                </Button>
+              </Link>
+            </div>
+          </div>
+        ))}
       </div>
     </>
   );
