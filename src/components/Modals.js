@@ -17,11 +17,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { signinActions } from "../store/signin";
 import { loginActions } from "../store/login";
 import classes from "./Modals.module.css";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 
 const Modals = () => {
   const history = useHistory();
-  const { id } = useParams();
+  const location = useLocation();
   const dispatch = useDispatch();
   const signin = useSelector((state) => state.signin.showSignin);
   const login = useSelector((state) => state.login.showLogin);
@@ -34,6 +34,7 @@ const Modals = () => {
     dispatch(loginActions.closeLoginPage());
   };
 
+  //go back to the '/' path, so always background in the app.js will be '/' path.
   const back = (e) => {
     e.stopPropagation();
     history.goBack();
@@ -116,8 +117,19 @@ const Modals = () => {
                 )}
               </form>
               {login && (
-                <Link to="/forgotpw">
-                  <p className={classes.forgotPw}>forgot your password?</p>
+                <Link
+                  to={{
+                    pathname: "/forgotpw",
+                    //state.backgroundを上書きしたいができない。
+                    state: { sample: location },
+                  }}
+                >
+                  <p
+                    onClick={(back, closeLoginHandler, console.log(location))}
+                    className={classes.forgotPw}
+                  >
+                    forgot your password?
+                  </p>
                 </Link>
               )}
               <div className={classes.button}>

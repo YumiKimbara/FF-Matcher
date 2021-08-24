@@ -6,11 +6,6 @@ import { signinActions } from "../store/signin";
 import { loginActions } from "../store/login";
 import { Button } from "@material-ui/core";
 
-const authData = [
-  { id: "signin", title: "Signin" },
-  { id: "login", title: "Login" },
-];
-
 const Header = () => {
   let location = useLocation();
   const dispatch = useDispatch();
