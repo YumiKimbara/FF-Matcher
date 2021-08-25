@@ -5,6 +5,7 @@ import {
   Fade,
   Card,
   TextField,
+  Input,
 } from "@material-ui/core";
 import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
@@ -47,7 +48,7 @@ const Modals = () => {
         aria-describedby="transition-modal-description"
         className={classes.modal}
         open={signin ? signin : login}
-        onClick={back}
+        // onClick={back}
         onClose={signin ? closeSigninHandler : closeLoginHandler}
         closeAfterTransition
         BackdropComponent={Backdrop}
@@ -58,89 +59,80 @@ const Modals = () => {
         <Fade in={signin ? signin : login}>
           <div className={(classes.cardWrapper, classes.modalBg)}>
             <div className={classes.SigninContent}>
-              <form className={classes.form} action="/signin" method="POST">
-                {signin && (
-                  <div className={classes.input}>
-                    <TextField
-                      variant="filled"
-                      placeholder="name"
-                      name="name"
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment>
-                            <PersonOutlineIcon />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  </div>
-                )}
-                <div className={classes.input}>
-                  <TextField
-                    variant="filled"
+              {errorMessage && <div>{errorMessage}</div>}
+              {signin && (
+                <form
+                  className={classes.form}
+                  action="/signin"
+                  method="POST"
+                  noValidate
+                  autoComplete="off"
+                >
+                  <Input
+                    placeholder="name"
+                    name="name"
+                    inputProps={{ "aria-label": "description" }}
+                  />
+                  <Input
                     placeholder="email"
                     name="email"
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment>
-                          <MailOutlineIcon />
-                        </InputAdornment>
-                      ),
-                    }}
+                    inputProps={{ "aria-label": "description" }}
                   />
-                </div>
-                <div className={classes.input}>
-                  <TextField
-                    variant="filled"
+                  <Input
                     placeholder="password"
                     name="password"
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment>
-                          <LockIcon />
-                        </InputAdornment>
-                      ),
-                    }}
+                    inputProps={{ "aria-label": "description" }}
                   />
-                </div>
-                {signin && (
-                  <div className={classes.input}>
-                    <TextField
-                      variant="filled"
-                      placeholder="password confirmation"
-                      name="passworComfirmation"
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment>
-                            <LockIcon />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  </div>
-                )}
-              </form>
-              {login && (
-                <Link
-                  to={{
-                    pathname: "/forgotpw",
-                    //state.backgroundを上書きしたいができない。
-                    state: { sample: location },
-                  }}
-                >
-                  <p
-                    onClick={(back, closeLoginHandler, console.log(location))}
-                    className={classes.forgotPw}
-                  >
-                    forgot your password?
-                  </p>
-                </Link>
+                  <Input
+                    placeholder="password comfirmation"
+                    name="confirmPassword"
+                    inputProps={{ "aria-label": "description" }}
+                  />
+                  <Button type="submit" variant="outlined">
+                    Sign in
+                  </Button>
+                </form>
               )}
-              <div className={classes.button}>
-                <Button variant="outlined">
-                  {signin ? "Sign in" : "Log in"}
-                </Button>
-              </div>
+
+              {login && (
+                <form
+                  className={classes.form}
+                  action="/login"
+                  method="POST"
+                  noValidate
+                  autoComplete="off"
+                >
+                  <Input
+                    placeholder="email"
+                    name="email"
+                    inputProps={{ "aria-label": "description" }}
+                  />
+                  <Input
+                    placeholder="password"
+                    name="password"
+                    inputProps={{ "aria-label": "description" }}
+                  />
+                  <Link
+                    to={{
+                      pathname: "/forgotpw",
+                      //state.backgroundを上書きしたいができない。
+                      state: { sample: location },
+                    }}
+                  >
+                    <p
+                      onClick={(back, closeLoginHandler, console.log(location))}
+                      className={classes.forgotPw}
+                    >
+                      forgot your password?
+                    </p>
+                  </Link>
+                  <div className={classes.button}>
+                    <Button type="submit" variant="outlined">
+                      Log in
+                    </Button>
+                  </div>
+                </form>
+              )}
             </div>
           </div>
         </Fade>
@@ -150,3 +142,107 @@ const Modals = () => {
 };
 
 export default Modals;
+
+// <Modal
+//         aria-labelledby="transition-modal-title"
+//         aria-describedby="transition-modal-description"
+//         className={classes.modal}
+//         open={signin ? signin : login}
+//         onClick={back}
+//         onClose={signin ? closeSigninHandler : closeLoginHandler}
+//         closeAfterTransition
+//         BackdropComponent={Backdrop}
+//         BackdropProps={{
+//           timeout: 500,
+//         }}
+//       >
+//         <Fade in={signin ? signin : login}>
+//           <div className={(classes.cardWrapper, classes.modalBg)}>
+//             <div className={classes.SigninContent}>
+//               <form className={classes.form} action="/signin" method="POST">
+//                 {signin && (
+//                   <div className={classes.input}>
+//                     <TextField
+//                       variant="filled"
+//                       placeholder="name"
+//                       name="name"
+//                       InputProps={{
+//                         startAdornment: (
+//                           <InputAdornment>
+//                             <PersonOutlineIcon />
+//                           </InputAdornment>
+//                         ),
+//                       }}
+//                     />
+//                   </div>
+//                 )}
+//                 <div className={classes.input}>
+//                   <TextField
+//                     variant="filled"
+//                     placeholder="email"
+//                     name="email"
+//                     InputProps={{
+//                       startAdornment: (
+//                         <InputAdornment>
+//                           <MailOutlineIcon />
+//                         </InputAdornment>
+//                       ),
+//                     }}
+//                   />
+//                 </div>
+//                 <div className={classes.input}>
+//                   <TextField
+//                     variant="filled"
+//                     placeholder="password"
+//                     name="password"
+//                     InputProps={{
+//                       startAdornment: (
+//                         <InputAdornment>
+//                           <LockIcon />
+//                         </InputAdornment>
+//                       ),
+//                     }}
+//                   />
+//                 </div>
+//                 {signin && (
+//                   <div className={classes.input}>
+//                     <TextField
+//                       variant="filled"
+//                       placeholder="password confirmation"
+//                       name="passworComfirmation"
+//                       InputProps={{
+//                         startAdornment: (
+//                           <InputAdornment>
+//                             <LockIcon />
+//                           </InputAdornment>
+//                         ),
+//                       }}
+//                     />
+//                   </div>
+//                 )}
+//               </form>
+//               {login && (
+//                 <Link
+//                   to={{
+//                     pathname: "/forgotpw",
+//                     //state.backgroundを上書きしたいができない。
+//                     state: { sample: location },
+//                   }}
+//                 >
+//                   <p
+//                     onClick={(back, closeLoginHandler, console.log(location))}
+//                     className={classes.forgotPw}
+//                   >
+//                     forgot your password?
+//                   </p>
+//                 </Link>
+//               )}
+//               <div className={classes.button}>
+//                 <Button variant="outlined">
+//                   {signin ? "Sign in" : "Log in"}
+//                 </Button>
+//               </div>
+//             </div>
+//           </div>
+//         </Fade>
+//       </Modal>
