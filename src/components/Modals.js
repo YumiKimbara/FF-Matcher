@@ -59,7 +59,6 @@ const Modals = () => {
         <Fade in={signin ? signin : login}>
           <div className={(classes.cardWrapper, classes.modalBg)}>
             <div className={classes.SigninContent}>
-              {errorMessage && <div>{errorMessage}</div>}
               {signin && (
                 <form
                   className={classes.form}

@@ -86,8 +86,18 @@ const Home = () => {
         setMessage(data.message);
       });
   }, []);
+
+  useEffect(() => {
+    fetch("auth/login")
+      .then((res) => res.json())
+      .then((data) => {
+        setMessage(data.message);
+      });
+  }, []);
+
   return (
     <>
+      {console.log(message)}
       <div className={classes.homeWrapper}>
         <div>
           <h3>Find Your Favorite Final Fantasy </h3>
