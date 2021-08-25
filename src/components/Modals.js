@@ -58,12 +58,13 @@ const Modals = () => {
         <Fade in={signin ? signin : login}>
           <div className={(classes.cardWrapper, classes.modalBg)}>
             <div className={classes.SigninContent}>
-              <form className={classes.form}>
+              <form className={classes.form} action="/signin" method="POST">
                 {signin && (
                   <div className={classes.input}>
                     <TextField
                       variant="filled"
                       placeholder="name"
+                      name="name"
                       InputProps={{
                         startAdornment: (
                           <InputAdornment>
@@ -78,6 +79,7 @@ const Modals = () => {
                   <TextField
                     variant="filled"
                     placeholder="email"
+                    name="email"
                     InputProps={{
                       startAdornment: (
                         <InputAdornment>
@@ -91,6 +93,7 @@ const Modals = () => {
                   <TextField
                     variant="filled"
                     placeholder="password"
+                    name="password"
                     InputProps={{
                       startAdornment: (
                         <InputAdornment>
@@ -105,6 +108,7 @@ const Modals = () => {
                     <TextField
                       variant="filled"
                       placeholder="password confirmation"
+                      name="passworComfirmation"
                       InputProps={{
                         startAdornment: (
                           <InputAdornment>

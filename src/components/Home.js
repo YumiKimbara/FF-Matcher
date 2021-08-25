@@ -5,6 +5,7 @@ import classes from "./Home.module.css";
 import Signin from "./Signin";
 import Login from "./Login";
 
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 const ff1 = "/images/ff1.png";
@@ -74,14 +75,23 @@ const images = [
 ];
 
 const Home = () => {
+  const [message, setMessage] = useState("");
   const signin = useSelector((state) => state.signin.showSignin);
   const login = useSelector((state) => state.login.showLogin);
 
+  useEffect(() => {
+    fetch("/api")
+      .then((res) => res.json())
+      .then((data) => {
+        setMessage(data.message);
+      });
+  }, []);
   return (
     <>
       <div className={classes.homeWrapper}>
         <div>
           <h3>Find Your Favorite Final Fantasy </h3>
+          <h3>hi {message}</h3>
         </div>
         <Carousel>
           {images.map((image) => {
