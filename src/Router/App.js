@@ -8,9 +8,13 @@ import ForgotPw from "../components/ForgotPw";
 import Result from "../components/Result";
 import Modals from "../components/Modals";
 
-function App() {
+function App({ fetchedData }) {
   const location = useLocation();
   const background = location.state && location.state.background;
+
+  // useEffect(() => {
+  //   fetchedData();
+  // }, [fetchedData]);
 
   return (
     <>

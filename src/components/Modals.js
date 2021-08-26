@@ -67,29 +67,68 @@ const Modals = () => {
                   noValidate
                   autoComplete="off"
                 >
-                  <Input
-                    placeholder="name"
-                    name="name"
-                    inputProps={{ "aria-label": "description" }}
-                  />
-                  <Input
-                    placeholder="email"
-                    name="email"
-                    inputProps={{ "aria-label": "description" }}
-                  />
-                  <Input
-                    placeholder="password"
-                    name="password"
-                    inputProps={{ "aria-label": "description" }}
-                  />
-                  <Input
-                    placeholder="password comfirmation"
-                    name="confirmPassword"
-                    inputProps={{ "aria-label": "description" }}
-                  />
-                  <Button type="submit" variant="outlined">
-                    Sign in
-                  </Button>
+                  <div className={classes.input}>
+                    <TextField
+                      variant="filled"
+                      name="name"
+                      placeholder="name"
+                      name="name"
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment>
+                            <PersonOutlineIcon />
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                  </div>
+                  <div className={classes.input}>
+                    <TextField
+                      variant="filled"
+                      placeholder="email"
+                      name="email"
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment>
+                            <MailOutlineIcon />
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                  </div>
+                  <div className={classes.input}>
+                    <TextField
+                      variant="filled"
+                      placeholder="password"
+                      name="password"
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment>
+                            <LockIcon />
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                  </div>
+                  <div className={classes.input}>
+                    <TextField
+                      variant="filled"
+                      placeholder="password confirmation"
+                      name="confirmPassword"
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment>
+                            <LockIcon />
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                  </div>
+                  <div className={classes.button}>
+                    <Button type="submit" variant="outlined">
+                      Sign in
+                    </Button>
+                  </div>
                 </form>
               )}
 
@@ -101,16 +140,34 @@ const Modals = () => {
                   noValidate
                   autoComplete="off"
                 >
-                  <Input
-                    placeholder="email"
-                    name="email"
-                    inputProps={{ "aria-label": "description" }}
-                  />
-                  <Input
-                    placeholder="password"
-                    name="password"
-                    inputProps={{ "aria-label": "description" }}
-                  />
+                  <div className={classes.input}>
+                    <TextField
+                      variant="filled"
+                      placeholder="email"
+                      name="email"
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment>
+                            <MailOutlineIcon />
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                  </div>
+                  <div className={classes.input}>
+                    <TextField
+                      variant="filled"
+                      placeholder="password"
+                      name="password"
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment>
+                            <LockIcon />
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                  </div>
                   <Link
                     to={{
                       pathname: "/forgotpw",
@@ -245,3 +302,24 @@ export default Modals;
 //           </div>
 //         </Fade>
 //       </Modal>
+
+// <Input
+// placeholder="name"
+// name="name"
+// inputProps={{ "aria-label": "description" }}
+// />
+// <Input
+// placeholder="email"
+// name="email"
+// inputProps={{ "aria-label": "description" }}
+// />
+// <Input
+// placeholder="password"
+// name="password"
+// inputProps={{ "aria-label": "description" }}
+// />
+// <Input
+// placeholder="password comfirmation"
+// name="confirmPassword"
+// inputProps={{ "aria-label": "description" }}
+// />

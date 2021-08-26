@@ -6,7 +6,8 @@ import Signin from "./Signin";
 import Login from "./Login";
 
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { questionsActions } from "../store/questions";
 
 const ff1 = "/images/ff1.png";
 const ff9 = "/images/ff9.png";
@@ -76,24 +77,29 @@ const images = [
 
 const Home = () => {
   const [message, setMessage] = useState("");
+  const dispatch = useDispatch();
   const signin = useSelector((state) => state.signin.showSignin);
   const login = useSelector((state) => state.login.showLogin);
+  const questions = useSelector((state) => state.questions.fetchedData);
 
-  useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => {
-        setMessage(data.message);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch("/api")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setMessage(data.message);
+  //     });
+  // }, []);
 
+  const getQuestionsHandler = () => {
+    dispatch(questionsActions.getQuestions());
+    console.log(questions);
+  };
+
+  //fetch all questions from MongoDB
   useEffect(() => {
-    fetch("auth/login")
-      .then((res) => res.json())
-      .then((data) => {
-        setMessage(data.message);
-      });
-  }, []);
+    getQuestionsHandler();
+    console.log();
+  }, [dispatch]);
 
   return (
     <>

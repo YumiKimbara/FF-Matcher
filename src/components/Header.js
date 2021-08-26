@@ -36,9 +36,9 @@ const Header = () => {
             Logo
           </h1>
         </Link>
-        {authData.map((i) => (
-          <div>
-            <div className={classes.signinLogin}>
+        <div className={classes.signinLogin}>
+          {authData.map((i) => (
+            <div>
               <Link
                 to={{
                   pathname: `/${i.id}`,
@@ -50,8 +50,8 @@ const Header = () => {
                 </Button>
               </Link>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </>
   );
