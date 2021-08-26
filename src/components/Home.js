@@ -7,7 +7,6 @@ import Login from "./Login";
 
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { questionsActions } from "../store/questions";
 
 const ff1 = "/images/ff1.png";
 const ff9 = "/images/ff9.png";
@@ -76,11 +75,10 @@ const images = [
 ];
 
 const Home = () => {
-  const [message, setMessage] = useState("");
-  const dispatch = useDispatch();
+  // const [message, setMessage] = useState("");
+
   const signin = useSelector((state) => state.signin.showSignin);
   const login = useSelector((state) => state.login.showLogin);
-  const questions = useSelector((state) => state.questions.fetchedData);
 
   // useEffect(() => {
   //   fetch("/api")
@@ -90,24 +88,11 @@ const Home = () => {
   //     });
   // }, []);
 
-  const getQuestionsHandler = () => {
-    dispatch(questionsActions.getQuestions());
-    console.log(questions);
-  };
-
-  //fetch all questions from MongoDB
-  useEffect(() => {
-    getQuestionsHandler();
-    console.log();
-  }, [dispatch]);
-
   return (
     <>
-      {console.log(message)}
       <div className={classes.homeWrapper}>
         <div>
           <h3>Find Your Favorite Final Fantasy </h3>
-          <h3>hi {message}</h3>
         </div>
         <Carousel>
           {images.map((image) => {
@@ -124,7 +109,7 @@ const Home = () => {
           })}
         </Carousel>
         <div className={classes.button}>
-          <Link to="/question">
+          <Link to="/questions">
             <Button variant="outlined">Start</Button>
           </Link>
         </div>

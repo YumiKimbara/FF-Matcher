@@ -37,162 +37,170 @@ const Modals = () => {
 
   //go back to the '/' path, so always background in the app.js will be '/' path.
   const back = (e) => {
+    //@@@stoppropagationをしているのに、modal内をクリックしてもgobackしてしまう。
     e.stopPropagation();
     history.goBack();
   };
 
   return (
     <>
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        className={classes.modal}
-        open={signin ? signin : login}
-        // onClick={back}
-        onClose={signin ? closeSigninHandler : closeLoginHandler}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={signin ? signin : login}>
-          <div className={(classes.cardWrapper, classes.modalBg)}>
-            <div className={classes.SigninContent}>
-              {signin && (
-                <form
-                  className={classes.form}
-                  action="/signin"
-                  method="POST"
-                  noValidate
-                  autoComplete="off"
-                >
-                  <div className={classes.input}>
-                    <TextField
-                      variant="filled"
-                      name="name"
-                      placeholder="name"
-                      name="name"
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment>
-                            <PersonOutlineIcon />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  </div>
-                  <div className={classes.input}>
-                    <TextField
-                      variant="filled"
-                      placeholder="email"
-                      name="email"
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment>
-                            <MailOutlineIcon />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  </div>
-                  <div className={classes.input}>
-                    <TextField
-                      variant="filled"
-                      placeholder="password"
-                      name="password"
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment>
-                            <LockIcon />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  </div>
-                  <div className={classes.input}>
-                    <TextField
-                      variant="filled"
-                      placeholder="password confirmation"
-                      name="confirmPassword"
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment>
-                            <LockIcon />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  </div>
-                  <div className={classes.button}>
-                    <Button type="submit" variant="outlined">
-                      Sign in
-                    </Button>
-                  </div>
-                </form>
-              )}
-
-              {login && (
-                <form
-                  className={classes.form}
-                  action="/login"
-                  method="POST"
-                  noValidate
-                  autoComplete="off"
-                >
-                  <div className={classes.input}>
-                    <TextField
-                      variant="filled"
-                      placeholder="email"
-                      name="email"
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment>
-                            <MailOutlineIcon />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  </div>
-                  <div className={classes.input}>
-                    <TextField
-                      variant="filled"
-                      placeholder="password"
-                      name="password"
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment>
-                            <LockIcon />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  </div>
-                  <Link
-                    to={{
-                      pathname: "/forgotpw",
-                      //state.backgroundを上書きしたいができない。
-                      state: { sample: location },
-                    }}
+      <Backdrop onClick={back}>
+        <Modal
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          className={classes.modal}
+          open={signin ? signin : login}
+          onClose={signin ? closeSigninHandler : closeLoginHandler}
+          closeAfterTransition
+          // BackdropComponent={Backdrop}
+          // BackdropProps={{
+          //   timeout: 500,
+          // }}
+        >
+          <Fade in={signin ? signin : login}>
+            <div className={(classes.cardWrapper, classes.modalBg)}>
+              <div className={classes.SigninContent}>
+                {signin && (
+                  <form
+                    className={classes.form}
+                    action="/signin"
+                    method="POST"
+                    noValidate
+                    autoComplete="off"
                   >
-                    <p
-                      onClick={(back, closeLoginHandler, console.log(location))}
-                      className={classes.forgotPw}
+                    <div className={classes.input}>
+                      <TextField
+                        variant="filled"
+                        name="name"
+                        placeholder="name"
+                        name="name"
+                        InputProps={{
+                          startAdornment: (
+                            <InputAdornment>
+                              <PersonOutlineIcon />
+                            </InputAdornment>
+                          ),
+                        }}
+                      />
+                    </div>
+                    <div className={classes.input}>
+                      <TextField
+                        variant="filled"
+                        placeholder="email"
+                        name="email"
+                        InputProps={{
+                          startAdornment: (
+                            <InputAdornment>
+                              <MailOutlineIcon />
+                            </InputAdornment>
+                          ),
+                        }}
+                      />
+                    </div>
+                    <div className={classes.input}>
+                      <TextField
+                        type="password"
+                        variant="filled"
+                        placeholder="password"
+                        name="password"
+                        InputProps={{
+                          startAdornment: (
+                            <InputAdornment>
+                              <LockIcon />
+                            </InputAdornment>
+                          ),
+                        }}
+                      />
+                    </div>
+                    <div className={classes.input}>
+                      <TextField
+                        variant="filled"
+                        type="password"
+                        placeholder="password confirmation"
+                        name="confirmPassword"
+                        InputProps={{
+                          startAdornment: (
+                            <InputAdornment>
+                              <LockIcon />
+                            </InputAdornment>
+                          ),
+                        }}
+                      />
+                    </div>
+                    <div className={classes.button}>
+                      <Button type="submit" variant="outlined">
+                        Sign in
+                      </Button>
+                    </div>
+                  </form>
+                )}
+
+                {login && (
+                  <form
+                    className={classes.form}
+                    action="/login"
+                    method="POST"
+                    noValidate
+                    autoComplete="off"
+                  >
+                    <div className={classes.input}>
+                      <TextField
+                        variant="filled"
+                        placeholder="email"
+                        name="email"
+                        InputProps={{
+                          startAdornment: (
+                            <InputAdornment>
+                              <MailOutlineIcon />
+                            </InputAdornment>
+                          ),
+                        }}
+                      />
+                    </div>
+                    <div className={classes.input}>
+                      <TextField
+                        variant="filled"
+                        type="password"
+                        placeholder="password"
+                        name="password"
+                        InputProps={{
+                          startAdornment: (
+                            <InputAdornment>
+                              <LockIcon />
+                            </InputAdornment>
+                          ),
+                        }}
+                      />
+                    </div>
+                    <Link
+                      to={{
+                        pathname: "/forgotpw",
+                        //state.backgroundを上書きしたいができない。
+                        state: { sample: location },
+                      }}
                     >
-                      forgot your password?
-                    </p>
-                  </Link>
-                  <div className={classes.button}>
-                    <Button type="submit" variant="outlined">
-                      Log in
-                    </Button>
-                  </div>
-                </form>
-              )}
+                      <p
+                        onClick={
+                          (back, closeLoginHandler, console.log(location))
+                        }
+                        className={classes.forgotPw}
+                      >
+                        forgot your password?
+                      </p>
+                    </Link>
+                    <div className={classes.button}>
+                      <Button type="submit" variant="outlined">
+                        Log in
+                      </Button>
+                    </div>
+                  </form>
+                )}
+              </div>
             </div>
-          </div>
-        </Fade>
-      </Modal>
+          </Fade>
+        </Modal>
+      </Backdrop>
+      {console.log(location)}
     </>
   );
 };

@@ -33,7 +33,7 @@ const Header = () => {
       <div className={classes.header}>
         <Link to="/">
           <h1 className={classes.logo} onClick={clearModalsHandler}>
-            Logo
+            FF diagnosis
           </h1>
         </Link>
         <div className={classes.signinLogin}>

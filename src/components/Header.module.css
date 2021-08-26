@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
 .header {
   height: 70px;
   display: flex;
@@ -8,8 +9,9 @@
   padding: 0 2rem;
 }
 
-.header h1 {
-  font-size: 1.2rem;
+.logo {
+  font-family: "Satisfy", cursive;
+  font-size: 1.7rem;
 }
 
 .signinLogin {

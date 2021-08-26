@@ -8,7 +8,7 @@ import ForgotPw from "../components/ForgotPw";
 import Result from "../components/Result";
 import Modals from "../components/Modals";
 
-function App({ fetchedData }) {
+function App() {
   const location = useLocation();
   const background = location.state && location.state.background;
 
@@ -22,7 +22,7 @@ function App({ fetchedData }) {
       <Switch location={background || location}>
         <Route exact path="/forgotpw" component={ForgotPw} />
         <Route exact path="/" component={Home} />
-        <Route exact path="/question" component={Question} />
+        <Route exact path="/questions" component={Question} />
         <Route exact path="/result" component={Result} />
       </Switch>
       {background && <Route exact path="/:id" component={Modals} />}
