@@ -7,6 +7,7 @@
   background-color: #d8e2dc;
   color: white;
   padding: 0 2rem;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
 .logo {
@@ -14,11 +15,11 @@
   font-size: 1.7rem;
 }
 
-.signinLogin {
+.signupLogin {
   display: flex;
 }
 
-.signin {
+.signup {
   margin-right: 0.5rem;
 }
 

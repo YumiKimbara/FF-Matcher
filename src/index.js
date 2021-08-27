@@ -8,6 +8,7 @@ import App from "./Router/App";
 import store from "./store/index";
 
 ReactDOM.render(
+  //set Provider and pass store inside of that to enable using store in the components
   <Provider store={store}>
     <Router>
       <App />

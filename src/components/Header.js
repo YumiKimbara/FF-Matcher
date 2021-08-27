@@ -2,7 +2,7 @@ import classes from "./Header.module.css";
 import { useDispatch } from "react-redux";
 
 import { Link, useLocation } from "react-router-dom";
-import { signinActions } from "../store/signin";
+import { signupActions } from "../store/signup";
 import { loginActions } from "../store/login";
 import { Button } from "@material-ui/core";
 
@@ -10,8 +10,8 @@ const Header = () => {
   let location = useLocation();
   const dispatch = useDispatch();
 
-  const openSigninHandler = () => {
-    dispatch(signinActions.openSigninPage());
+  const openSignupHandler = () => {
+    dispatch(signupActions.openSignupPage());
   };
 
   const openLoginHandler = () => {
@@ -19,13 +19,13 @@ const Header = () => {
   };
 
   const clearModalsHandler = () => {
-    dispatch(signinActions.closeSigninPage());
+    dispatch(signupActions.closeSignupPage());
     dispatch(loginActions.closeLoginPage());
   };
 
   const authData = [
-    { id: "signin", title: "Signin", handler: openSigninHandler },
-    { id: "login", title: "Login", handler: openLoginHandler },
+    { id: "signup", title: "Sign up", handler: openSignupHandler },
+    { id: "login", title: "Log in", handler: openLoginHandler },
   ];
 
   return (
@@ -36,7 +36,7 @@ const Header = () => {
             FF diagnosis
           </h1>
         </Link>
-        <div className={classes.signinLogin}>
+        <div className={classes.signupLogin}>
           {authData.map((i) => (
             <div>
               <Link
@@ -45,7 +45,7 @@ const Header = () => {
                   state: { background: location },
                 }}
               >
-                <Button className={classes.signin} onClick={i.handler}>
+                <Button className={classes.signup} onClick={i.handler}>
                   {i.title}
                 </Button>
               </Link>

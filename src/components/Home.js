@@ -2,8 +2,6 @@ import { Button } from "@material-ui/core";
 import Carousel from "react-material-ui-carousel";
 import { Link } from "react-router-dom";
 import classes from "./Home.module.css";
-import Signin from "./Signin";
-import Login from "./Login";
 
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -77,7 +75,7 @@ const images = [
 const Home = () => {
   // const [message, setMessage] = useState("");
 
-  const signin = useSelector((state) => state.signin.showSignin);
+  const signup = useSelector((state) => state.signup.showSignup);
   const login = useSelector((state) => state.login.showLogin);
 
   // useEffect(() => {
@@ -114,8 +112,8 @@ const Home = () => {
           </Link>
         </div>
       </div>
-      {signin && <Signin />}
-      {login && <Login />}
+      {/* {signup && <Signup />}
+      {login && <Login />} */}
     </>
   );
 };

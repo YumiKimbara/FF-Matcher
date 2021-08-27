@@ -30,3 +30,17 @@
 .qButton {
   margin: 1rem;
 }
+
+.chocobo {
+  width: 20%;
+  position: absolute;
+  bottom: 2rem;
+  right: 1rem;
+}
+
+.moogle {
+  width: 20%;
+  position: absolute;
+  bottom: 2rem;
+  left: 1rem;
+}
