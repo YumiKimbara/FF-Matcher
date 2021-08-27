@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Card, Button } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import { questionsActions } from "../store/questions";
+import { Link } from "react-router-dom";
 
 import * as api from "../api/index";
 
@@ -11,7 +12,10 @@ const chocobo = "/images/chocobo.png";
 const moogle = "/images/moogle.png";
 
 const Question = () => {
+  const [id, setId] = useState("");
+  const [questionNum, setQuestionNum] = useState(0);
   const questions = useSelector((state) => state.questions.fetchedData);
+  const [currentQuestion, setCurrentQuestion] = useState(questions[0]);
   const dispatch = useDispatch();
 
   //@@@questionsのstateが更新されない。(mongoDBからデータを引っ張りたい。)
@@ -31,10 +35,18 @@ const Question = () => {
     fetchQuestionsfromDB();
   }, [dispatch]);
 
+  const checkId = () => {
+    console.log(id);
+    questions.forEach((item, i) => {
+      if (item._id === id) {
+        return setCurrentQuestion(item);
+      }
+    });
+  };
+
   return (
     <>
-      {console.log(questions)}
-      {questions.length >= 1 && (
+      {questions.length >= 1 && currentQuestion && (
         <div>
           <div>
             <img className={classes.chocobo} src={chocobo} alt="chocobo" />
@@ -49,23 +61,47 @@ const Question = () => {
                 <p>1/10</p>
               </div>
               <div className={classes.cardContent}>
-                <p>{questions[0].body}</p>
+                <p>{currentQuestion.body}</p>
                 <div>
                   <div className={classes.qButton}>
                     <Button
-                      name={questions[0].next[0].ancient}
+                      name={currentQuestion.next[0]}
                       variant="outlined"
                       onClick={(e) => {
-                        console.log(e.target.closest("button").name);
+                        setId(e.target.closest("button").name);
+                        checkId();
                       }}
                     >
-                      {questions[0].options[0].label}
+                      {currentQuestion.options[0].label}
                     </Button>
                   </div>
                   <div className={classes.qButton}>
-                    <Button variant="outlined">
-                      {questions[0].options[1].label}
-                    </Button>
+                    {id === "10" && (
+                      <Link to="/">
+                        <Button
+                          name={currentQuestion.next[1]}
+                          variant="outlined"
+                          onClick={(e) => {
+                            setId(e.target.closest("button").name);
+                            checkId();
+                          }}
+                        >
+                          {currentQuestion.options[1].label}
+                        </Button>
+                      </Link>
+                    )}
+                    {id !== "10" && (
+                      <Button
+                        name={currentQuestion.next[1]}
+                        variant="outlined"
+                        onClick={(e) => {
+                          setId(e.target.closest("button").name);
+                          checkId();
+                        }}
+                      >
+                        {currentQuestion.options[1].label}
+                      </Button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -85,3 +121,13 @@ export default Question;
 //-> ドメインが異なるとき(現在のドメインとAPIのドメイン)、に起こる。
 //-> errorを解除するにはをAPI側で許可を出さないといけない。(みているWebページのドメインからなら繋いでも良いよという許可)
 //->
+
+// body: "Which period do you prefer?";
+// next: [
+//   { ancient: "6128355f1335e758d971fd8d" },
+//   { modern: "612857331335e758d971fd8e" },
+// ];
+// options: [
+//   { id: "ancient", label: "Ancient" },
+//   { id: "modern", label: "Modern" },
+// ];
