@@ -31,8 +31,6 @@ const Question = () => {
     fetchQuestionsfromDB();
   }, [dispatch]);
 
-  let num = 0;
-
   return (
     <>
       {console.log(questions)}
@@ -51,14 +49,13 @@ const Question = () => {
                 <p>1/10</p>
               </div>
               <div className={classes.cardContent}>
-                <p>{questions[num].body}</p>
+                <p>{questions[0].body}</p>
                 <div>
                   <div className={classes.qButton}>
                     <Button
                       name={questions[0].next[0].ancient}
                       variant="outlined"
                       onClick={(e) => {
-                        num++;
                         console.log(e.target.closest("button").name);
                       }}
                     >
