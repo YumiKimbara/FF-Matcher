@@ -12,6 +12,7 @@ const chocobo = "/images/chocobo.png";
 const moogle = "/images/moogle.png";
 
 const Question = () => {
+  const [questionNum, setQuestionNum] = useState(1);
   const [id, setId] = useState("");
   const questions = useSelector((state) => state.questions.fetchedData);
   const [currentQuestion, setCurrentQuestion] = useState(questions[0]);
@@ -37,8 +38,8 @@ const Question = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    setCurrentQuestion(questions[0]);
-  }, [][currentQuestion]);
+    return setCurrentQuestion(questions[0]);
+  }, [questions]);
 
   const checkId = () => {
     questions.forEach((item, i) => {
@@ -62,7 +63,8 @@ const Question = () => {
           <div className={classes.cardWrapper}>
             <Card className={classes.card}>
               <div className={classes.title}>
-                <h2>Question 1</h2>
+                {console.log(questionNum)}
+                <h2>Question {questionNum}</h2>
                 <p>1/10</p>
               </div>
               <div className={classes.cardContent}>
@@ -75,6 +77,7 @@ const Question = () => {
                       onClick={(e) => {
                         setId(e.target.closest("button").name);
                         checkId();
+                        setQuestionNum(questionNum + 1);
                       }}
                     >
                       {currentQuestion.options[0].label}
@@ -102,6 +105,7 @@ const Question = () => {
                         onClick={(e) => {
                           setId(e.target.closest("button").name);
                           checkId();
+                          setQuestionNum(questionNum + 1);
                         }}
                       >
                         {currentQuestion.options[1].label}
