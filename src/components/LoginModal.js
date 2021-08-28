@@ -20,7 +20,7 @@ const LoginModal = () => {
   // いま（コンポーネントのrendering時に）/loginにいるかどうか (boolean)
   const toLogIn = useRouteMatch("/login")?.isExact ?? false;
 
-  console.log(useRouteMatch("/login")?.isExact ?? false);
+  //console.log(useRouteMatch("/login")?.isExact ?? false);
 
   // const signup = useSelector((state) => state.signup.showSignup);
   // const login = useSelector((state) => state.login.showLogin);

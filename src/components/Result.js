@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { resultsActions } from "../store/results";
+import { questionsActions } from "../store/questions";
 import * as api from "../api/index";
 
 import classes from "./Result.module.css";
 
 const Result = () => {
   const results = useSelector((state) => state.results.fetchedData);
+  const resultId = useSelector((state) => state.questions.clickedId);
   const dispatch = useDispatch();
 
   const ff9 = "/images/ff9.png";
@@ -25,6 +27,15 @@ const Result = () => {
   useEffect(() => {
     fetchResultsfromDB();
   }, [dispatch]);
+
+  const sample = () => {
+    results.forEach((item) => {
+      console.logObject.keys(item.resultId, resultId);
+      if (Object.keys(item.resultId) === resultId)
+        console.log("result matches");
+    });
+  };
+  sample();
 
   return (
     <>

@@ -75,8 +75,8 @@ const images = [
 const Home = () => {
   // const [message, setMessage] = useState("");
 
-  const signup = useSelector((state) => state.signup.showSignup);
-  const login = useSelector((state) => state.login.showLogin);
+  // const signup = useSelector((state) => state.signup.showSignup);
+  // const login = useSelector((state) => state.login.showLogin);
 
   // useEffect(() => {
   //   fetch("/api")

@@ -12,10 +12,13 @@ const chocobo = "/images/chocobo.png";
 const moogle = "/images/moogle.png";
 
 const Question = () => {
-  const [questionNum, setQuestionNum] = useState(1);
-  const [id, setId] = useState("");
   const questions = useSelector((state) => state.questions.fetchedData);
+  const clickedId = useSelector((state) => state.questions.clickedId);
+  const [questionNum, setQuestionNum] = useState(1);
   const [currentQuestion, setCurrentQuestion] = useState(questions[0]);
+
+  console.log(clickedId);
+
   const dispatch = useDispatch();
 
   //@@@questionsのstateが更新されない。(mongoDBからデータを引っ張りたい。)
@@ -41,13 +44,14 @@ const Question = () => {
 
   useEffect(() => {
     questions.forEach((item, i) => {
-      if (item._id === id) {
-        console.log(id);
-        setId(id);
+      if (item._id === clickedId) {
+        console.log(clickedId);
         setCurrentQuestion(item);
+      } else {
+        console.log(clickedId);
       }
     });
-  }, [id]);
+  }, [clickedId]);
 
   return (
     <>
@@ -69,13 +73,18 @@ const Question = () => {
                 <p>{currentQuestion.body}</p>
                 <div>
                   <div className={classes.qButton}>
-                    {id.includes("result") && (
+                    {clickedId.includes("result") && (
                       <Link to="/result">
                         <Button
                           name={currentQuestion.next[0]}
                           variant="outlined"
                           onClick={(e) => {
-                            setId(e.target.closest("button").name);
+                            dispatch(
+                              questionsActions.getClickedId(
+                                e.target.closest("button").name
+                              )
+                            );
+
                             //setQuestionNum(questionNum + 1);
                           }}
                         >
@@ -83,12 +92,16 @@ const Question = () => {
                         </Button>
                       </Link>
                     )}
-                    {!id.includes("result") && (
+                    {!clickedId.includes("result") && (
                       <Button
                         name={currentQuestion.next[0]}
                         variant="outlined"
                         onClick={(e) => {
-                          setId(e.target.closest("button").name);
+                          dispatch(
+                            questionsActions.getClickedId(
+                              e.target.closest("button").name
+                            )
+                          );
                           setQuestionNum(questionNum + 1);
                         }}
                       >
@@ -97,13 +110,17 @@ const Question = () => {
                     )}
                   </div>
                   <div className={classes.qButton}>
-                    {id.includes("result") && (
+                    {clickedId.includes("result") && (
                       <Link to="/result">
                         <Button
                           name={currentQuestion.next[1]}
                           variant="outlined"
                           onClick={(e) => {
-                            setId(e.target.closest("button").name);
+                            dispatch(
+                              questionsActions.getClickedId(
+                                e.target.closest("button").name
+                              )
+                            );
                             //setQuestionNum(questionNum + 1);
                           }}
                         >
@@ -111,12 +128,16 @@ const Question = () => {
                         </Button>
                       </Link>
                     )}
-                    {!id.includes("result") && (
+                    {!clickedId.includes("result") && (
                       <Button
                         name={currentQuestion.next[1]}
                         variant="outlined"
                         onClick={(e) => {
-                          setId(e.target.closest("button").name);
+                          dispatch(
+                            questionsActions.getClickedId(
+                              e.target.closest("button").name
+                            )
+                          );
                           setQuestionNum(questionNum + 1);
                         }}
                       >
@@ -142,13 +163,3 @@ export default Question;
 //-> ドメインが異なるとき(現在のドメインとAPIのドメイン)、に起こる。
 //-> errorを解除するにはをAPI側で許可を出さないといけない。(みているWebページのドメインからなら繋いでも良いよという許可)
 //->
-
-// body: "Which period do you prefer?";
-// next: [
-//   { ancient: "6128355f1335e758d971fd8d" },
-//   { modern: "612857331335e758d971fd8e" },
-// ];
-// options: [
-//   { id: "ancient", label: "Ancient" },
-//   { id: "modern", label: "Modern" },
-// ];

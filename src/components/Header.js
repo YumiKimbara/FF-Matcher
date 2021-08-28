@@ -18,10 +18,10 @@ const Header = () => {
     dispatch(loginActions.openLoginPage());
   };
 
-  const clearModalsHandler = () => {
-    dispatch(signupActions.closeSignupPage());
-    dispatch(loginActions.closeLoginPage());
-  };
+  // const clearModalsHandler = () => {
+  //   dispatch(signupActions.closeSignupPage());
+  //   dispatch(loginActions.closeLoginPage());
+  // };
 
   const authData = [
     { id: "signup", title: "Sign up", handler: openSignupHandler },
@@ -32,9 +32,7 @@ const Header = () => {
     <>
       <div className={classes.header}>
         <Link to="/">
-          <h1 className={classes.logo} onClick={clearModalsHandler}>
-            FF diagnosis
-          </h1>
+          <h1 className={classes.logo}>FF MATCHER</h1>
         </Link>
         <div className={classes.signupLogin}>
           {authData.map((i) => (

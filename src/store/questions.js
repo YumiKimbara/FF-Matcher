@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialQuestionsState = { fetchedData: [] };
+const initialQuestionsState = { fetchedData: [], clickedId: "" };
 
 const questionsSlice = createSlice({
   name: "questions",
@@ -8,6 +8,9 @@ const questionsSlice = createSlice({
   reducers: {
     getQuestions(state, action) {
       state.fetchedData = action.payload;
+    },
+    getClickedId(state, action) {
+      state.clickedId = action.payload;
     },
   },
 });
