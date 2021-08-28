@@ -18,7 +18,6 @@ const Result = () => {
     try {
       const { data } = await api.fetchResultData();
       dispatch(resultsActions.getResults(data));
-      console.log(results);
     } catch (error) {
       console.error(error);
     }
@@ -35,11 +34,8 @@ const Result = () => {
 
   useEffect(() => {
     results.forEach((item) => {
-      console.log(item.resultId.toString(), resultId);
-
       if (item.resultId.toString() === resultId) {
         setResult(item);
-        console.log(result);
       }
     });
   }, [results]);

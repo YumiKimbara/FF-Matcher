@@ -71,7 +71,7 @@ const Question = () => {
                 <p>{currentQuestion.body}</p>
                 <div>
                   <div className={classes.qButton}>
-                    {clickedId.includes("result") && (
+                    {currentQuestion.next[0].includes("result") && (
                       <Link to="/result">
                         <Button
                           name={currentQuestion.next[0]}
@@ -90,7 +90,7 @@ const Question = () => {
                         </Button>
                       </Link>
                     )}
-                    {!clickedId.includes("result") && (
+                    {!currentQuestion.next[0].includes("result") && (
                       <Button
                         name={currentQuestion.next[0]}
                         variant="outlined"
@@ -108,7 +108,7 @@ const Question = () => {
                     )}
                   </div>
                   <div className={classes.qButton}>
-                    {clickedId.includes("result") && (
+                    {currentQuestion.next[1].includes("result") && (
                       <Link to="/result">
                         <Button
                           name={currentQuestion.next[1]}
@@ -126,7 +126,7 @@ const Question = () => {
                         </Button>
                       </Link>
                     )}
-                    {!clickedId.includes("result") && (
+                    {!currentQuestion.next[1].includes("result") && (
                       <Button
                         name={currentQuestion.next[1]}
                         variant="outlined"
