@@ -13,10 +13,11 @@ const moogle = "/images/moogle.png";
 
 const Question = () => {
   const [id, setId] = useState("");
-  const [questionNum, setQuestionNum] = useState(0);
   const questions = useSelector((state) => state.questions.fetchedData);
   const [currentQuestion, setCurrentQuestion] = useState(questions[0]);
   const dispatch = useDispatch();
+
+  console.log(questions, currentQuestion);
 
   //@@@questionsのstateが更新されない。(mongoDBからデータを引っ張りたい。)
   //内部関数が呼び出されてない。からconsole.logが出ない。
@@ -35,11 +36,15 @@ const Question = () => {
     fetchQuestionsfromDB();
   }, [dispatch]);
 
+  useEffect(() => {
+    setCurrentQuestion(questions[0]);
+  }, [][currentQuestion]);
+
   const checkId = () => {
-    console.log(id);
     questions.forEach((item, i) => {
       if (item._id === id) {
-        return setCurrentQuestion(item);
+        console.log(id);
+        return setCurrentQuestion(() => item);
       }
     });
   };
@@ -77,7 +82,7 @@ const Question = () => {
                   </div>
                   <div className={classes.qButton}>
                     {id === "10" && (
-                      <Link to="/">
+                      <Link to="/result">
                         <Button
                           name={currentQuestion.next[1]}
                           variant="outlined"
