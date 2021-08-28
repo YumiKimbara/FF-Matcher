@@ -17,8 +17,6 @@ const Question = () => {
   const [questionNum, setQuestionNum] = useState(1);
   const [currentQuestion, setCurrentQuestion] = useState(questions[0]);
 
-  console.log(clickedId);
-
   const dispatch = useDispatch();
 
   //@@@questionsのstateが更新されない。(mongoDBからデータを引っ張りたい。)
@@ -51,7 +49,7 @@ const Question = () => {
         console.log(clickedId);
       }
     });
-  }, [clickedId]);
+  }, [questionNum, clickedId]);
 
   return (
     <>

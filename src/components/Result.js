@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { resultsActions } from "../store/results";
 import { questionsActions } from "../store/questions";
@@ -9,9 +9,10 @@ import classes from "./Result.module.css";
 const Result = () => {
   const results = useSelector((state) => state.results.fetchedData);
   const resultId = useSelector((state) => state.questions.clickedId);
+  const [result, setResult] = useState("");
   const dispatch = useDispatch();
 
-  const ff9 = "/images/ff9.png";
+  // const ff9 = "/images/ff10.png";
 
   const fetchResultsfromDB = async () => {
     try {
@@ -28,33 +29,31 @@ const Result = () => {
     fetchResultsfromDB();
   }, [dispatch]);
 
-  const sample = () => {
+  // useEffect(() => {
+  //   setCurrentQuestion(questions[0]);
+  // }, [questions]);
+
+  useEffect(() => {
     results.forEach((item) => {
-      console.logObject.keys(item.resultId, resultId);
-      if (Object.keys(item.resultId) === resultId)
-        console.log("result matches");
+      console.log(item.resultId.toString(), resultId);
+
+      if (item.resultId.toString() === resultId) {
+        setResult(item);
+        console.log(result);
+      }
     });
-  };
-  sample();
+  }, [results]);
 
   return (
     <>
       <div className={classes.resultWrapper}>
-        <h3>Your favorite Final Fantasy is IX</h3>
+        <h3>Your favorite Final Fantasy is {result.name}</h3>
         <div className={classes.imageWrapper}>
-          <img className={classes.image} src={ff9} alt="ffImage" />
+          <img className={classes.image} src={result.image} alt="ffImage" />
         </div>
         <div className={classes.story}>
           <h3 className={classes.subTitle}>Story</h3>
-          <p>
-            Strange events transpire on the Mist Continent, one of the four main
-            lands of Gaia. The kingdom of Alexandria, ruled by Queen Brahne,
-            begins their invasion of other nations under orders of Kuja, the
-            "angel of death" from Terra. An accidental encounter in Alexandria
-            brings Zidane, Vivi, and Garnet together, and they set out on a
-            journey that leads them to discover the secrets of their past, the
-            crystal, and a place to call home.
-          </p>
+          <p>{result.description}</p>
         </div>
       </div>
     </>
