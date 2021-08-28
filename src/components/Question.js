@@ -18,8 +18,6 @@ const Question = () => {
   const [currentQuestion, setCurrentQuestion] = useState(questions[0]);
   const dispatch = useDispatch();
 
-  console.log(questions, currentQuestion);
-
   //@@@questionsのstateが更新されない。(mongoDBからデータを引っ張りたい。)
   //内部関数が呼び出されてない。からconsole.logが出ない。
   // const fetchQuestionsfromDB = () => async (dispatch) => {
@@ -38,14 +36,24 @@ const Question = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    return setCurrentQuestion(questions[0]);
+    setCurrentQuestion(questions[0]);
   }, [questions]);
+
+  useEffect(() => {
+    questions.forEach((item, i) => {
+      if (item._id === id) {
+        console.log(id);
+        setId(id);
+        setCurrentQuestion(item);
+      }
+    });
+  }, [id]);
 
   const checkId = () => {
     questions.forEach((item, i) => {
       if (item._id === id) {
         console.log(id);
-        return setCurrentQuestion(() => item);
+        return setCurrentQuestion(item);
       }
     });
   };
@@ -63,7 +71,6 @@ const Question = () => {
           <div className={classes.cardWrapper}>
             <Card className={classes.card}>
               <div className={classes.title}>
-                {console.log(questionNum)}
                 <h2>Question {questionNum}</h2>
                 <p>1/10</p>
               </div>
@@ -76,7 +83,6 @@ const Question = () => {
                       variant="outlined"
                       onClick={(e) => {
                         setId(e.target.closest("button").name);
-                        checkId();
                         setQuestionNum(questionNum + 1);
                       }}
                     >
@@ -91,7 +97,6 @@ const Question = () => {
                           variant="outlined"
                           onClick={(e) => {
                             setId(e.target.closest("button").name);
-                            checkId();
                           }}
                         >
                           {currentQuestion.options[1].label}
@@ -104,7 +109,6 @@ const Question = () => {
                         variant="outlined"
                         onClick={(e) => {
                           setId(e.target.closest("button").name);
-                          checkId();
                           setQuestionNum(questionNum + 1);
                         }}
                       >
