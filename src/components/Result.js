@@ -1,7 +1,30 @@
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { resultsActions } from "../store/results";
+import * as api from "../api/index";
+
 import classes from "./Result.module.css";
 
 const Result = () => {
+  const results = useSelector((state) => state.results.fetchedData);
+  const dispatch = useDispatch();
+
   const ff9 = "/images/ff9.png";
+
+  const fetchResultsfromDB = async () => {
+    try {
+      const { data } = await api.fetchResultData();
+      dispatch(resultsActions.getResults(data));
+      console.log(results);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  //fetch all questions from MongoDB
+  useEffect(() => {
+    fetchResultsfromDB();
+  }, [dispatch]);
 
   return (
     <>

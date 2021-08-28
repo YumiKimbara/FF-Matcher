@@ -49,15 +49,6 @@ const Question = () => {
     });
   }, [id]);
 
-  const checkId = () => {
-    questions.forEach((item, i) => {
-      if (item._id === id) {
-        console.log(id);
-        return setCurrentQuestion(item);
-      }
-    });
-  };
-
   return (
     <>
       {questions.length >= 1 && currentQuestion && (
@@ -78,32 +69,49 @@ const Question = () => {
                 <p>{currentQuestion.body}</p>
                 <div>
                   <div className={classes.qButton}>
-                    <Button
-                      name={currentQuestion.next[0]}
-                      variant="outlined"
-                      onClick={(e) => {
-                        setId(e.target.closest("button").name);
-                        setQuestionNum(questionNum + 1);
-                      }}
-                    >
-                      {currentQuestion.options[0].label}
-                    </Button>
+                    {id.includes("result") && (
+                      <Link to="/result">
+                        <Button
+                          name={currentQuestion.next[0]}
+                          variant="outlined"
+                          onClick={(e) => {
+                            setId(e.target.closest("button").name);
+                            //setQuestionNum(questionNum + 1);
+                          }}
+                        >
+                          {currentQuestion.options[0].label}
+                        </Button>
+                      </Link>
+                    )}
+                    {!id.includes("result") && (
+                      <Button
+                        name={currentQuestion.next[0]}
+                        variant="outlined"
+                        onClick={(e) => {
+                          setId(e.target.closest("button").name);
+                          setQuestionNum(questionNum + 1);
+                        }}
+                      >
+                        {currentQuestion.options[0].label}
+                      </Button>
+                    )}
                   </div>
                   <div className={classes.qButton}>
-                    {id === "10" && (
+                    {id.includes("result") && (
                       <Link to="/result">
                         <Button
                           name={currentQuestion.next[1]}
                           variant="outlined"
                           onClick={(e) => {
                             setId(e.target.closest("button").name);
+                            //setQuestionNum(questionNum + 1);
                           }}
                         >
                           {currentQuestion.options[1].label}
                         </Button>
                       </Link>
                     )}
-                    {id !== "10" && (
+                    {!id.includes("result") && (
                       <Button
                         name={currentQuestion.next[1]}
                         variant="outlined"
