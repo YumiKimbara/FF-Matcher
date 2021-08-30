@@ -11,6 +11,8 @@ import { useSelector, useDispatch } from "react-redux";
 import classes from "./Modals.module.css";
 import { Link, useHistory, useLocation, useRouteMatch } from "react-router-dom";
 
+import Home from "./Home";
+
 const SignupModal = () => {
   const history = useHistory();
   const location = useLocation();

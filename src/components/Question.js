@@ -25,6 +25,9 @@ const Question = () => {
   const fetchQuestionsfromDB = async () => {
     try {
       const { data } = await api.fetchData();
+      // const { data2 } = await api.fetchHomeData();
+      // console.log(data2);
+
       dispatch(questionsActions.getQuestions(data));
     } catch (error) {
       console.error(error);

@@ -12,10 +12,14 @@ import { useSelector, useDispatch } from "react-redux";
 import classes from "./Modals.module.css";
 import { Link, useHistory, useLocation, useRouteMatch } from "react-router-dom";
 
+import { authActions } from "../store/auth";
+
+import Home from "./Home";
+
 const LoginModal = () => {
   const history = useHistory();
   const location = useLocation();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   //@@@
   // いま（コンポーネントのrendering時に）/loginにいるかどうか (boolean)
   const toLogIn = useRouteMatch("/login")?.isExact ?? false;
@@ -48,7 +52,6 @@ const LoginModal = () => {
       data-testid="this is auth"
       className={classes.modal}
       //@@@loginにいたらopnいなかったらclose
-      //signup -> signupに変更する。
       open={toLogIn}
       onClose={() => {
         history.goBack();
@@ -59,72 +62,75 @@ const LoginModal = () => {
       //   timeout: 500,
       // }}
     >
-      {/* <Fade in={toLogIn}> */}
-      <div className={(classes.cardWrapper, classes.modalBg)}>
-        <div className={classes.SignupContent}>
-          <form
-            className={classes.form}
-            action="/login"
-            method="POST"
-            noValidate
-            autoComplete="off"
-          >
-            <div className={classes.input}>
-              <TextField
-                variant="filled"
-                placeholder="email"
-                name="email"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment>
-                      <MailOutlineIcon />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </div>
-            <div className={classes.input}>
-              <TextField
-                variant="filled"
-                type="password"
-                placeholder="password"
-                name="password"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment>
-                      <LockIcon />
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </div>
-            <Link
-              to={{
-                pathname: "/forgotpw",
-                //state.backgroundを上書きしたいができない。
-                state: { sample: location },
-              }}
+      <Fade in={toLogIn}>
+        <div className={(classes.cardWrapper, classes.modalBg)}>
+          <div className={classes.SignupContent}>
+            <form
+              className={classes.form}
+              action="/login"
+              method="POST"
+              noValidate
+              autoComplete="off"
             >
-              <p
-                onClick={() => {
-                  // back();
-                  // closeLoginHandler();
-                  console.log(location);
+              <div className={classes.input}>
+                <TextField
+                  variant="filled"
+                  placeholder="email"
+                  name="email"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment>
+                        <MailOutlineIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </div>
+              <div className={classes.input}>
+                <TextField
+                  variant="filled"
+                  type="password"
+                  placeholder="password"
+                  name="password"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment>
+                        <LockIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </div>
+              <Link
+                to={{
+                  pathname: "/forgotpw",
+                  //state.backgroundを上書きしたいができない。
                 }}
-                className={classes.forgotPw}
               >
-                forgot your password?
-              </p>
-            </Link>
-            <div className={classes.button}>
-              <Button type="submit" variant="outlined">
-                Log in
-              </Button>
-            </div>
-          </form>
+                <p
+                  onClick={() => {
+                    // back();
+                    // closeLoginHandler();
+                    console.log(location);
+                  }}
+                  className={classes.forgotPw}
+                >
+                  forgot your password?
+                </p>
+              </Link>
+              <div className={classes.button}>
+                <Button
+                  type="submit"
+                  variant="outlined"
+                  onClick={() => dispatch(authActions.authToggle())}
+                >
+                  Log in
+                </Button>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
-      {/* </Fade> */}
+      </Fade>
     </Modal>
   );
 };
