@@ -15,8 +15,6 @@ const Result = () => {
   const [result, setResult] = useState("");
   const dispatch = useDispatch();
 
-  // const ff9 = "/images/ff10.png";
-
   const fetchResultsfromDB = async () => {
     try {
       const { data } = await api.fetchResultData();
@@ -30,10 +28,6 @@ const Result = () => {
   useEffect(() => {
     fetchResultsfromDB();
   }, [dispatch]);
-
-  // useEffect(() => {
-  //   setCurrentQuestion(questions[0]);
-  // }, [questions]);
 
   useEffect(() => {
     results.forEach((item) => {

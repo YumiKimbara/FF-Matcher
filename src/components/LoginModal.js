@@ -44,7 +44,7 @@ const LoginModal = () => {
   //   history.goBack();
   // };
   //@@@backdropにイベントあってもmodalをクリックしたらそこでイベントが起こる。
-  //親の中に兄弟としておいておけばクリックしても大丈夫。
+  //@@@親の中に兄弟としておいておけばクリックしても大丈夫。
   return (
     <Modal
       aria-labelledby="transition-modal-title"

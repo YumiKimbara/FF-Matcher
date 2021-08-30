@@ -20,7 +20,36 @@ const Question = () => {
   const dispatch = useDispatch();
 
   //@@@questionsのstateが更新されない。(mongoDBからデータを引っ張りたい。)
-  //内部関数が呼び出されてない。からconsole.logが出ない。
+  //@@@内部関数が呼び出されてない。からconsole.logが出ない。
+
+  //---関数は下記のようにかける---
+  //ノーマルな関数
+  // function normalFunction() {
+  //   return 1;
+  // }
+
+  //アロー関数
+  // const arrowFunction = () => {
+  //   return 1;
+  // };
+
+  //アロー関数省略形
+  // const directReturnArrowFunction = () => 1;
+
+  //アロー関数内に内部関数がある。外側の関数が処理される時に内部関数も処理される。
+  // const arrowFunctionReturnsFunction = () => {
+  //   return () => {
+  //     return 1;
+  //   };
+  // };
+
+  // const a = arrowFunctionReturnsFunction();
+
+  // console.log(a);
+
+  //内部関数のあるアロー関数の省略形
+  // const shortArrowFunctionReturnsFunction = () => () => 1;
+
   // const fetchQuestionsfromDB = () => async (dispatch) => {
   const fetchQuestionsfromDB = async () => {
     try {
@@ -85,8 +114,6 @@ const Question = () => {
                                 e.target.closest("button").name
                               )
                             );
-
-                            //setQuestionNum(questionNum + 1);
                           }}
                         >
                           {currentQuestion.options[0].label}
@@ -122,7 +149,6 @@ const Question = () => {
                                 e.target.closest("button").name
                               )
                             );
-                            //setQuestionNum(questionNum + 1);
                           }}
                         >
                           {currentQuestion.options[1].label}

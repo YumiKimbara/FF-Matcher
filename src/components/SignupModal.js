@@ -18,8 +18,6 @@ const SignupModal = () => {
   const location = useLocation();
   const toSignup = useRouteMatch("/signup")?.isExact ?? false;
 
-  //console.log(useRouteMatch("/signup")?.isExact ?? false);
-
   return (
     <Modal
       aria-labelledby="transition-modal-title"
