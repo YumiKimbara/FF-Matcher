@@ -97,7 +97,6 @@ const Question = () => {
             <Card className={classes.card}>
               <div className={classes.title}>
                 <h2>Question {questionNum}</h2>
-                <p>1/10</p>
               </div>
               <div className={classes.cardContent}>
                 <p>{currentQuestion.body}</p>
