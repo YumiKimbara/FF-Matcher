@@ -64,3 +64,5 @@ const Result = () => {
 };
 
 export default Result;
+
+//@@@@コピーライトスクエニ学習目的

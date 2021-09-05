@@ -6,6 +6,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 // import Visibility from "@material-ui/icons/Visibility";
 // import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import classes from "./Modals.module.css";
@@ -13,10 +14,16 @@ import { Link, useHistory, useLocation, useRouteMatch } from "react-router-dom";
 
 import Home from "./Home";
 
+import axios from "axios";
+
 const SignupModal = () => {
   const history = useHistory();
   const location = useLocation();
   const toSignup = useRouteMatch("/signup")?.isExact ?? false;
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   return (
     <Modal
@@ -34,8 +41,35 @@ const SignupModal = () => {
           <div className={classes.SignupContent}>
             <form
               className={classes.form}
-              action="/signup"
-              method="POST"
+              //@@@@ページ遷移。reactrouterと違い擬似的なページ遷移ではない。
+              //そんためリロードされて今までのjsの情報が全て消える。(stateなども)
+              //現在いるURLをもとにactionのurlに続く。ただ3000でなく3001にしたい。
+              //react routerとは併用しない。traditional(ページが切り替わるたびにリロードされるタイプのHP)なサイトではまだ使われている。
+              // action="/signup"
+              // method="POST"
+              onSubmit={(e) => {
+                e.preventDefault();
+
+                console.log(name, email, password, confirmPassword);
+
+                fetch("http://localhost:3001/signup", {
+                  method: "POST",
+                  headers: { "content-type": "application/json" },
+                  body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    password: password,
+                    confirmPassword: confirmPassword,
+                  }),
+                });
+
+                // axios.post("http://localhost:3001/signup", {
+                //   name: name,
+                //   email: email,
+                //   password: password,
+                //   confirmPassword: confirmPassword,
+                // });
+              }}
               noValidate
               autoComplete="off"
             >
@@ -44,13 +78,16 @@ const SignupModal = () => {
                   variant="filled"
                   name="name"
                   placeholder="name"
-                  name="name"
+                  // name="name"
                   InputProps={{
                     startAdornment: (
                       <InputAdornment>
                         <PersonOutlineIcon />
                       </InputAdornment>
                     ),
+                  }}
+                  onChange={(e) => {
+                    setName(e.target.value);
                   }}
                 />
               </div>
@@ -65,6 +102,9 @@ const SignupModal = () => {
                         <MailOutlineIcon />
                       </InputAdornment>
                     ),
+                  }}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
                   }}
                 />
               </div>
@@ -81,6 +121,9 @@ const SignupModal = () => {
                       </InputAdornment>
                     ),
                   }}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
                 />
               </div>
               <div className={classes.input}>
@@ -95,6 +138,9 @@ const SignupModal = () => {
                         <LockIcon />
                       </InputAdornment>
                     ),
+                  }}
+                  onChange={(e) => {
+                    setConfirmPassword(e.target.value);
                   }}
                 />
               </div>
