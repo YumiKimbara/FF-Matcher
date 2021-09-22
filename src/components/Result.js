@@ -39,7 +39,6 @@ const Result = () => {
 
   const initializeClickedId = () => {
     dispatch(questionsActions.getClickedId(""));
-    console.log(clickedId);
   };
 
   return (
@@ -65,4 +64,4 @@ const Result = () => {
 
 export default Result;
 
-//@@@@コピーライトスクエニ学習目的
+//@@@@コピーライトスクエニ学習目的などと一文入れておく

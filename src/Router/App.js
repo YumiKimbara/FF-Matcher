@@ -13,8 +13,6 @@ import Result from "../components/Result";
 function App() {
   const location = useLocation();
 
-  console.log(location);
-
   //if there is background, set it as a location
   let background = location.state && location.state.background;
 
@@ -24,6 +22,7 @@ function App() {
       <Switch location={background || location}>
         <Route exact path="/forgotpw" component={ForgotPw} />
         <Route exact path="/" component={Home} />
+        <Route exact path="/me" component={Home} />
         <Route exact path="/questions" component={Question} />
         <Route exact path="/result" component={Result} />
       </Switch>

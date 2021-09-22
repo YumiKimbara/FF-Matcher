@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button, Modal, Fade, TextField } from "@material-ui/core";
 // import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
@@ -7,8 +8,6 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 // import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 import { useSelector, useDispatch } from "react-redux";
-// import { signupActions } from "../store/signup";
-// import { loginActions } from "../store/login";
 import classes from "./Modals.module.css";
 import { Link, useHistory, useLocation, useRouteMatch } from "react-router-dom";
 
@@ -17,25 +16,14 @@ import { authActions } from "../store/auth";
 import Home from "./Home";
 
 const LoginModal = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
   //@@@
   // いま（コンポーネントのrendering時に）/loginにいるかどうか (boolean)
   const toLogIn = useRouteMatch("/login")?.isExact ?? false;
-
-  //console.log(useRouteMatch("/login")?.isExact ?? false);
-
-  // const signup = useSelector((state) => state.signup.showSignup);
-  // const login = useSelector((state) => state.login.showLogin);
-
-  // const closeSignupHandler = () => {
-  //   dispatch(signupActions.closeSignupPage());
-  // };
-
-  // const closeLoginHandler = () => {
-  //   dispatch(loginActions.closeLoginPage());
-  // };
 
   //go back to the '/' path, so always background in the app.js will be '/' path.
   // const back = (e) => {
@@ -67,8 +55,25 @@ const LoginModal = () => {
           <div className={classes.SignupContent}>
             <form
               className={classes.form}
-              action="/login"
-              method="POST"
+              //@@@@ページ遷移。reactrouterと違い擬似的なページ遷移ではない。
+              //そんためリロードされて今までのjsの情報が全て消える。(stateなども)
+              //現在いるURLをもとにactionのurlに続く。ただ3000でなく3001にしたい。
+              //react routerとは併用しない。traditional(ページが切り替わるたびにリロードされるタイプのHP)なサイトではまだ使われている。
+              // action="/signup"
+              // method="POST"
+              onSubmit={(e) => {
+                e.preventDefault();
+
+                fetch("http://localhost:3001/login", {
+                  method: "POST",
+                  headers: { "content-type": "application/json" },
+                  body: JSON.stringify({
+                    email: email,
+                    password: password,
+                  }),
+                  credentials: "include",
+                });
+              }}
               noValidate
               autoComplete="off"
             >
@@ -83,6 +88,9 @@ const LoginModal = () => {
                         <MailOutlineIcon />
                       </InputAdornment>
                     ),
+                  }}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
                   }}
                 />
               </div>
@@ -99,6 +107,9 @@ const LoginModal = () => {
                       </InputAdornment>
                     ),
                   }}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
                 />
               </div>
               <Link
@@ -107,22 +118,13 @@ const LoginModal = () => {
                   //state.backgroundを上書きしたいができない。
                 }}
               >
-                <p
-                  onClick={() => {
-                    // back();
-                    // closeLoginHandler();
-                    console.log(location);
-                  }}
-                  className={classes.forgotPw}
-                >
-                  forgot your password?
-                </p>
+                <p className={classes.forgotPw}>forgot your password?</p>
               </Link>
               <div className={classes.button}>
                 <Button
                   type="submit"
                   variant="outlined"
-                  onClick={() => dispatch(authActions.authToggle())}
+                  // onClick={() => dispatch(authActions.authToggle())}
                 >
                   Log in
                 </Button>

@@ -6,7 +6,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 // import Visibility from "@material-ui/icons/Visibility";
 // import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import classes from "./Modals.module.css";
@@ -15,6 +15,10 @@ import { Link, useHistory, useLocation, useRouteMatch } from "react-router-dom";
 import Home from "./Home";
 
 import axios from "axios";
+
+import { authActions } from "../store/auth";
+
+import * as api from "../api/index";
 
 const SignupModal = () => {
   const history = useHistory();
@@ -50,8 +54,6 @@ const SignupModal = () => {
               onSubmit={(e) => {
                 e.preventDefault();
 
-                console.log(name, email, password, confirmPassword);
-
                 fetch("http://localhost:3001/signup", {
                   method: "POST",
                   headers: { "content-type": "application/json" },
@@ -61,6 +63,9 @@ const SignupModal = () => {
                     password: password,
                     confirmPassword: confirmPassword,
                   }),
+                  //@@fetchはcookieをdefaultでは保存しないので、credentialsを設定。
+                  //cookieはなぜ送らないといけないの？sessionとは何か？
+                  credentials: "include",
                 });
 
                 // axios.post("http://localhost:3001/signup", {
@@ -145,7 +150,14 @@ const SignupModal = () => {
                 />
               </div>
               <div className={classes.button}>
-                <Button type="submit" variant="outlined">
+                <Button
+                  type="submit"
+                  variant="outlined"
+                  onClick={() => {
+                    // fetchSessionfromDB();
+                    // console.log(sessionStatus);
+                  }}
+                >
                   Sign up
                 </Button>
               </div>

@@ -9,26 +9,12 @@ import { Button } from "@material-ui/core";
 const Header = () => {
   const clickedId = useSelector((state) => state.questions.clickedId);
   const auth = useSelector((state) => state.auth.checkAuth);
-  console.log(auth);
 
   let location = useLocation();
   const dispatch = useDispatch();
 
-  // const openSignupHandler = () => {
-  //   dispatch(signupActions.openSignupPage());
-  // };
-
-  // const openLoginHandler = () => {
-  //   dispatch(loginActions.openLoginPage());
-
-  // const clearModalsHandler = () => {
-  //   dispatch(signupActions.closeSignupPage());
-  //   dispatch(loginActions.closeLoginPage());
-  // };
-
   const initializeClickedId = () => {
     dispatch(questionsActions.getClickedId(""));
-    console.log(clickedId);
   };
 
   const authData = [

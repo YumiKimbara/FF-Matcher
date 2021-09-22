@@ -54,8 +54,8 @@ const Question = () => {
   const fetchQuestionsfromDB = async () => {
     try {
       const { data } = await api.fetchData();
+      console.log("fetchedData");
       // const { data2 } = await api.fetchHomeData();
-      // console.log(data2);
 
       dispatch(questionsActions.getQuestions(data));
     } catch (error) {
@@ -75,10 +75,9 @@ const Question = () => {
   useEffect(() => {
     questions.forEach((item, i) => {
       if (item._id === clickedId) {
-        console.log(clickedId);
         setCurrentQuestion(item);
       } else {
-        console.log(clickedId);
+        //console.log(clickedId);
       }
     });
   }, [questionNum, clickedId]);
