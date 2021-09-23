@@ -35,20 +35,20 @@ const LoginModal = () => {
   //@@@backdropにイベントあってもmodalをクリックしたらそこでイベントが起こる。
   //@@@親の中に兄弟としておいておけばクリックしても大丈夫。
 
-  const fetchSessionfromDB = async () => {
-    await fetch("http://localhost:3001/me")
-      .then((res) => {
-        res.json().then((data) => {
-          console.log("sessiondata", data);
-        });
-        // dispatch(authActions.isLoggedIn("data"));
+  // const fetchSessionfromDB = async () => {
+  //   await fetch("http://localhost:3001/me")
+  //     .then((res) => {
+  //       res.json().then((data) => {
+  //         console.log("sessiondata", data);
+  //       });
+  //       // dispatch(authActions.isLoggedIn("data"));
 
-        // console.log("sessionStatus", sessionStatus);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  //       // console.log("sessionStatus", sessionStatus);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   return (
     <Modal
@@ -89,7 +89,15 @@ const LoginModal = () => {
                     password: password,
                   }),
                   credentials: "include",
-                });
+                })
+                  .then(() => {
+                    fetch("http://localhost:3001/me");
+                  })
+                  .then((res) => {
+                    res.json().then((data) => {
+                      console.log("sessiondata", data);
+                    });
+                  });
               }}
               noValidate
               autoComplete="off"
@@ -141,7 +149,7 @@ const LoginModal = () => {
                 <Button
                   type="submit"
                   variant="outlined"
-                  onClick={() => fetchSessionfromDB()}
+                  // onClick={() => fetchSessionfromDB()}
                 >
                   Log in
                 </Button>
