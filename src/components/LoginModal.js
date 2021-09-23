@@ -12,6 +12,7 @@ import classes from "./Modals.module.css";
 import { Link, useHistory, useLocation, useRouteMatch } from "react-router-dom";
 
 import { authActions } from "../store/auth";
+import * as api from "../api/index";
 
 import Home from "./Home";
 
@@ -33,6 +34,22 @@ const LoginModal = () => {
   // };
   //@@@backdropにイベントあってもmodalをクリックしたらそこでイベントが起こる。
   //@@@親の中に兄弟としておいておけばクリックしても大丈夫。
+
+  const fetchSessionfromDB = async () => {
+    await fetch("http://localhost:3001/me")
+      .then((res) => {
+        res.json().then((data) => {
+          console.log("sessiondata", data);
+        });
+        // dispatch(authActions.isLoggedIn("data"));
+
+        // console.log("sessionStatus", sessionStatus);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <Modal
       aria-labelledby="transition-modal-title"
@@ -124,7 +141,7 @@ const LoginModal = () => {
                 <Button
                   type="submit"
                   variant="outlined"
-                  // onClick={() => dispatch(authActions.authToggle())}
+                  onClick={() => fetchSessionfromDB()}
                 >
                   Log in
                 </Button>

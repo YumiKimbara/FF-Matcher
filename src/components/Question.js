@@ -53,7 +53,7 @@ const Question = () => {
   // const fetchQuestionsfromDB = () => async (dispatch) => {
   const fetchQuestionsfromDB = async () => {
     try {
-      const { data } = await api.fetchData();
+      const { data } = await api.fetchQuestionsData();
       console.log("fetchedData");
       // const { data2 } = await api.fetchHomeData();
 

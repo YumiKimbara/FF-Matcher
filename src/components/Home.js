@@ -91,23 +91,23 @@ const Home = () => {
   //   }
   // };
 
-  const fetchSessionfromDB = async () => {
-    try {
-      const { data } = await api.fetchSessionData();
-      console.log("sessiondata");
+  // const fetchSessionfromDB = async () => {
+  //   try {
+  //     const { data } = await api.fetchSessionData();
+  //     console.log("sessiondata", data);
 
-      dispatch(authActions.isLoggedIn("data"));
+  //     // dispatch(authActions.isLoggedIn("data"));
 
-      console.log("sessionStatus", sessionStatus);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  //     // console.log("sessionStatus", sessionStatus);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
-  //fetch all questions from MongoDB
-  useEffect(() => {
-    fetchSessionfromDB();
-  }, [dispatch]);
+  // //fetch all questions from MongoDB
+  // useEffect(() => {
+  //   fetchSessionfromDB();
+  // }, [api.fetchSessionData]);
 
   return (
     <>
