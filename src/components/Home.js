@@ -1,9 +1,6 @@
 import { Button } from "@material-ui/core";
 import Carousel from "react-material-ui-carousel";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { authActions } from "../store/auth";
 import * as api from "../api/index";
 import classes from "./Home.module.css";
 
@@ -74,9 +71,6 @@ const images = [
 ];
 
 const Home = () => {
-  const dispatch = useDispatch();
-  const sessionStatus = useSelector((state) => state);
-
   //@ここでsignupを呼び出してしまってる。bodyを設定してないからpwなどがundefinedになる。
   //@internal errorの原因
   //@3000/meに行かなくてもfetchを使って3001/meにはいけるよ！ fetch/ajax
@@ -96,7 +90,7 @@ const Home = () => {
   //     const { data } = await api.fetchSessionData();
   //     console.log("sessiondata", data);
 
-  //     // dispatch(authActions.isLoggedIn("data"));
+  //     dispatch(authActions.isLoggedIn("data"));
 
   //     // console.log("sessionStatus", sessionStatus);
   //   } catch (error) {

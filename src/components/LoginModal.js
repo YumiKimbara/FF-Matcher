@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Modal, Fade, TextField } from "@material-ui/core";
 // import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
@@ -12,9 +12,6 @@ import classes from "./Modals.module.css";
 import { Link, useHistory, useLocation, useRouteMatch } from "react-router-dom";
 
 import { authActions } from "../store/auth";
-import * as api from "../api/index";
-
-import Home from "./Home";
 
 const LoginModal = () => {
   const [email, setEmail] = useState("");
@@ -22,6 +19,7 @@ const LoginModal = () => {
   const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
+  const sessionStatus = useSelector((state) => state);
   //@@@
   // いま（コンポーネントのrendering時に）/loginにいるかどうか (boolean)
   const toLogIn = useRouteMatch("/login")?.isExact ?? false;
@@ -49,6 +47,41 @@ const LoginModal = () => {
   //       console.log(err);
   //     });
   // };
+
+  const postLoginData = () => {
+    fetch("http://localhost:3001/login", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+      credentials: "include",
+    }).then((res) => {
+      console.log(res);
+      if (res.status === 201) {
+        fetchSessionfromDB();
+      }
+    });
+  };
+
+  const fetchSessionfromDB = () => {
+    fetch("http://localhost:3001/me", {
+      method: "GET",
+      //@credentialsをgetにもsetしたことによって、req.session.userの内容を表示することができた
+      credentials: "include",
+    }).then((res) => {
+      res.json().then((data) => {
+        console.log("sessiondata", data.cookie);
+        dispatch(authActions.isLoggedIn(data));
+        console.log("dispatch", sessionStatus.auth.fetchedSession);
+      });
+    });
+  };
+
+  useEffect(() => {
+    fetchSessionfromDB();
+  }, [dispatch]);
 
   return (
     <Modal
@@ -80,24 +113,7 @@ const LoginModal = () => {
               // method="POST"
               onSubmit={(e) => {
                 e.preventDefault();
-
-                fetch("http://localhost:3001/login", {
-                  method: "POST",
-                  headers: { "content-type": "application/json" },
-                  body: JSON.stringify({
-                    email: email,
-                    password: password,
-                  }),
-                  credentials: "include",
-                })
-                  .then(() => {
-                    fetch("http://localhost:3001/me");
-                  })
-                  .then((res) => {
-                    res.json().then((data) => {
-                      console.log("sessiondata", data);
-                    });
-                  });
+                postLoginData();
               }}
               noValidate
               autoComplete="off"
@@ -146,11 +162,7 @@ const LoginModal = () => {
                 <p className={classes.forgotPw}>forgot your password?</p>
               </Link>
               <div className={classes.button}>
-                <Button
-                  type="submit"
-                  variant="outlined"
-                  // onClick={() => fetchSessionfromDB()}
-                >
+                <Button type="submit" variant="outlined">
                   Log in
                 </Button>
               </div>
