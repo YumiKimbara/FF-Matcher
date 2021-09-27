@@ -1,5 +1,6 @@
 import classes from "./Header.module.css";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import { authActions } from "../store/auth";
 
 import { Link, useLocation } from "react-router-dom";
@@ -8,6 +9,7 @@ import { Button } from "@material-ui/core";
 
 const Header = () => {
   const sessionStatus = useSelector((state) => state.auth.fetchedSession);
+  const history = useHistory();
 
   console.log("sessionStatus", sessionStatus);
 
@@ -22,6 +24,27 @@ const Header = () => {
     { id: "signup", title: "Sign up" },
     { id: "login", title: "Log in" },
   ];
+
+  const postLogoutData = () => {
+    fetch("http://localhost:3001/logout", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      credentials: "include",
+    }).then((res) => {
+      fetch("http://localhost:3001/logout", {
+        method: "GET",
+        headers: { "content-type": "application/json" },
+        //@credentialsをgetにもsetしたことによって、req.session.userの内容を表示することができた
+        credentials: "include",
+      }).then((res) => {
+        res.json().then((res) => {
+          console.log("logout", res);
+          dispatch(authActions.isLoggedIn(res.data));
+          console.log("sessionStatus logout", sessionStatus);
+        });
+      });
+    });
+  };
 
   return (
     <>
@@ -59,28 +82,8 @@ const Header = () => {
               <Button
                 type="submit"
                 onClick={() => {
-                  fetch("http://localhost:3001/logout", {
-                    method: "POST",
-                    headers: { "content-type": "application/json" },
-                    // body: JSON.stringify({
-                    // email: email,
-                    // password: password,
-                    // }),
-                    credentials: "include",
-                  }).then((res) => {
-                    fetch("http://localhost:3001/logout", {
-                      method: "GET",
-                      headers: { "content-type": "application/json" },
-                      //@credentialsをgetにもsetしたことによって、req.session.userの内容を表示することができた
-                      credentials: "include",
-                    }).then((res) => {
-                      res.json().then((res) => {
-                        console.log("logout", res);
-                        dispatch(authActions.isLoggedIn(res.data));
-                        console.log("sessionStatus logout", sessionStatus);
-                      });
-                    });
-                  });
+                  postLogoutData();
+                  history.replace("/");
                 }}
               >
                 Log out

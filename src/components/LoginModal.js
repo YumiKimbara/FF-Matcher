@@ -19,6 +19,7 @@ const LoginModal = () => {
   const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
+  const sessionStatus = useSelector((state) => state.auth.fetchedSession);
 
   //@@@
   // いま（コンポーネントのrendering時に）/loginにいるかどうか (boolean)
@@ -161,7 +162,13 @@ const LoginModal = () => {
                 <p className={classes.forgotPw}>forgot your password?</p>
               </Link>
               <div className={classes.button}>
-                <Button type="submit" variant="outlined">
+                <Button
+                  type="submit"
+                  variant="outlined"
+                  onClick={() => {
+                    typeof sessionStatus === "object" && history.goBack("/");
+                  }}
+                >
                   Log in
                 </Button>
               </div>
