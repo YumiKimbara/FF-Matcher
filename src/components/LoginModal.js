@@ -19,8 +19,6 @@ const LoginModal = () => {
   const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
-  const sessionStatus = useSelector((state) => state);
-  console.log("dispatch", sessionStatus.auth.fetchedSession);
 
   //@@@
   // いま（コンポーネントのrendering時に）/loginにいるかどうか (boolean)

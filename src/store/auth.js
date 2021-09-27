@@ -1,14 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialAuthState = { fetchedSession: [] };
+const initialAuthState = { fetchedSession: "no data" };
 
 const authSlice = createSlice({
   name: "auth",
   initialState: initialAuthState,
   reducers: {
-    // authToggle(state) {
-    //   state.checkAuth = !state.checkAuth;
-    // },
     isLoggedIn(state, action) {
       state.fetchedSession = action.payload;
     },

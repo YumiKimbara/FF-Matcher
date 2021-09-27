@@ -7,27 +7,60 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 // import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import classes from "./Modals.module.css";
-import { Link, useHistory, useLocation, useRouteMatch } from "react-router-dom";
-
-import Home from "./Home";
-
-import axios from "axios";
+import { useHistory, useLocation, useRouteMatch } from "react-router-dom";
 
 import { authActions } from "../store/auth";
-
-import * as api from "../api/index";
 
 const SignupModal = () => {
   const history = useHistory();
   const location = useLocation();
+  const dispatch = useDispatch();
   const toSignup = useRouteMatch("/signup")?.isExact ?? false;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const postSignupData = () => {
+    fetch("http://localhost:3001/signup", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        password: password,
+        confirmPassword: confirmPassword,
+      }),
+      //@@fetchはcookieをdefaultでは保存しないので、credentialsを設定。
+      //cookieはなぜ送らないといけないの？sessionとは何か？
+      credentials: "include",
+    }).then((res) => {
+      console.log(res);
+      if (res.status === 201) {
+        fetchSessionfromDB();
+      }
+    });
+  };
+
+  const fetchSessionfromDB = () => {
+    fetch("http://localhost:3001/me", {
+      method: "GET",
+      //@credentialsをgetにもsetしたことによって、req.session.userの内容を表示することができた
+      credentials: "include",
+    }).then((res) => {
+      res.json().then((res) => {
+        console.log("sessiondata", res.data);
+        dispatch(authActions.isLoggedIn(res.data.user));
+      });
+    });
+  };
+
+  useEffect(() => {
+    fetchSessionfromDB();
+  }, [dispatch]);
 
   return (
     <Modal
@@ -53,27 +86,7 @@ const SignupModal = () => {
               // method="POST"
               onSubmit={(e) => {
                 e.preventDefault();
-
-                fetch("http://localhost:3001/signup", {
-                  method: "POST",
-                  headers: { "content-type": "application/json" },
-                  body: JSON.stringify({
-                    name: name,
-                    email: email,
-                    password: password,
-                    confirmPassword: confirmPassword,
-                  }),
-                  //@@fetchはcookieをdefaultでは保存しないので、credentialsを設定。
-                  //cookieはなぜ送らないといけないの？sessionとは何か？
-                  credentials: "include",
-                });
-
-                // axios.post("http://localhost:3001/signup", {
-                //   name: name,
-                //   email: email,
-                //   password: password,
-                //   confirmPassword: confirmPassword,
-                // });
+                postSignupData();
               }}
               noValidate
               autoComplete="off"
@@ -83,7 +96,6 @@ const SignupModal = () => {
                   variant="filled"
                   name="name"
                   placeholder="name"
-                  // name="name"
                   InputProps={{
                     startAdornment: (
                       <InputAdornment>

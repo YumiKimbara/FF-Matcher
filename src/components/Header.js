@@ -1,14 +1,15 @@
 import classes from "./Header.module.css";
 import { useDispatch, useSelector } from "react-redux";
+import { authActions } from "../store/auth";
 
 import { Link, useLocation } from "react-router-dom";
-import { authActions } from "../store/auth";
 import { questionsActions } from "../store/questions";
 import { Button } from "@material-ui/core";
 
 const Header = () => {
-  const clickedId = useSelector((state) => state.questions.clickedId);
-  const auth = useSelector((state) => state.auth.checkAuth);
+  const sessionStatus = useSelector((state) => state.auth.fetchedSession);
+
+  console.log("sessionStatus", sessionStatus);
 
   let location = useLocation();
   const dispatch = useDispatch();
@@ -26,11 +27,17 @@ const Header = () => {
     <>
       <div className={classes.header}>
         <Link to="/">
-          <h1 className={classes.logo} onClick={() => initializeClickedId()}>
+          <h1
+            className={classes.logo}
+            onClick={() => {
+              initializeClickedId();
+              console.log(sessionStatus);
+            }}
+          >
             FF MATCHER
           </h1>
         </Link>
-        {!auth && (
+        {typeof sessionStatus !== "object" && (
           <div className={classes.signupLogin}>
             {authData.map((i) => (
               <div>
@@ -44,15 +51,41 @@ const Header = () => {
                 </Link>
               </div>
             ))}
-            {auth && (
-              <div>
-                <form action="/logout" method="POST">
-                  <div>
-                    <Button type="submit">Log out</Button>
-                  </div>
-                </form>
-              </div>
-            )}
+          </div>
+        )}
+        {typeof sessionStatus === "object" && (
+          <div>
+            <div>
+              <Button
+                type="submit"
+                onClick={() => {
+                  fetch("http://localhost:3001/logout", {
+                    method: "POST",
+                    headers: { "content-type": "application/json" },
+                    // body: JSON.stringify({
+                    // email: email,
+                    // password: password,
+                    // }),
+                    credentials: "include",
+                  }).then((res) => {
+                    fetch("http://localhost:3001/logout", {
+                      method: "GET",
+                      headers: { "content-type": "application/json" },
+                      //@credentialsをgetにもsetしたことによって、req.session.userの内容を表示することができた
+                      credentials: "include",
+                    }).then((res) => {
+                      res.json().then((res) => {
+                        console.log("logout", res);
+                        dispatch(authActions.isLoggedIn(res.data));
+                        console.log("sessionStatus logout", sessionStatus);
+                      });
+                    });
+                  });
+                }}
+              >
+                Log out
+              </Button>
+            </div>
           </div>
         )}
       </div>

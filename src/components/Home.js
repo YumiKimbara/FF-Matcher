@@ -3,6 +3,7 @@ import Carousel from "react-material-ui-carousel";
 import { Link } from "react-router-dom";
 import * as api from "../api/index";
 import classes from "./Home.module.css";
+import { useSelector } from "react-redux";
 
 const ff1 = "/images/ff1.png";
 const ff9 = "/images/ff9.png";
@@ -71,6 +72,8 @@ const images = [
 ];
 
 const Home = () => {
+  const sessionStatus = useSelector((state) => state.auth.fetchedSession);
+
   //@ここでsignupを呼び出してしまってる。bodyを設定してないからpwなどがundefinedになる。
   //@internal errorの原因
   //@3000/meに行かなくてもfetchを使って3001/meにはいけるよ！ fetch/ajax
@@ -124,8 +127,13 @@ const Home = () => {
           })}
         </Carousel>
         <div className={classes.button}>
-          <Link to="/questions">
-            <Button variant="outlined">Start</Button>
+          <Link to={typeof sessionStatus === "object" ? "/questions" : "/"}>
+            <Button
+              variant="outlined"
+              disabled={typeof sessionStatus !== "object" ? true : false}
+            >
+              Start
+            </Button>
           </Link>
         </div>
       </div>
