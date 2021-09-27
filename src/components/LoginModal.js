@@ -20,6 +20,8 @@ const LoginModal = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const sessionStatus = useSelector((state) => state);
+  console.log("dispatch", sessionStatus.auth.fetchedSession);
+
   //@@@
   // いま（コンポーネントのrendering時に）/loginにいるかどうか (boolean)
   const toLogIn = useRouteMatch("/login")?.isExact ?? false;
@@ -71,10 +73,9 @@ const LoginModal = () => {
       //@credentialsをgetにもsetしたことによって、req.session.userの内容を表示することができた
       credentials: "include",
     }).then((res) => {
-      res.json().then((data) => {
-        console.log("sessiondata", data.cookie);
-        dispatch(authActions.isLoggedIn(data));
-        console.log("dispatch", sessionStatus.auth.fetchedSession);
+      res.json().then((res) => {
+        console.log("sessiondata", res.data);
+        dispatch(authActions.isLoggedIn(res.data.user));
       });
     });
   };
