@@ -1,5 +1,4 @@
 import { Switch, Route, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
 
 import Header from "../components/Header";
 import LoginModal from "../components/LoginModal";
@@ -8,7 +7,6 @@ import Home from "../components/Home";
 import Question from "../components/Question";
 import ForgotPw from "../components/ForgotPw";
 import Result from "../components/Result";
-// import Modals from "../components/Modals";
 
 function App() {
   const location = useLocation();
@@ -33,11 +31,3 @@ function App() {
 }
 
 export default App;
-
-//@@@
-//loginだけのURLだと背景がどの画面になるかわからない。search?loginみたいに書く。Routerの外にコンポーネンとを書いておく。
-
-// /search
-// /maps
-// /news
-// /login

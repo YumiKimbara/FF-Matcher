@@ -37,3 +37,10 @@
 .forgotPw {
   margin-top: 1rem;
 }
+
+.errorMsg {
+  border: 2px solid orangered;
+  background-color: salmon;
+  color: red;
+  padding: 0.3rem;
+}

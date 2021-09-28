@@ -23,6 +23,7 @@ const SignupModal = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
 
   const postSignupData = () => {
     fetch("http://localhost:3001/signup", {
@@ -34,28 +35,39 @@ const SignupModal = () => {
         password: password,
         confirmPassword: confirmPassword,
       }),
-      //@@fetchはcookieをdefaultでは保存しないので、credentialsを設定。
-      //cookieはなぜ送らないといけないの？sessionとは何か？
       credentials: "include",
-    }).then((res) => {
-      console.log(res);
-      if (res.status === 201) {
-        fetchSessionfromDB();
-      }
-    });
+    })
+      .then((res) => {
+        if (res.status === 201) {
+          fetchSessionfromDB();
+        } else {
+          fetch("http://localhost:3001/signup", {
+            credentials: "include",
+          }).then((res) => {
+            res.json().then((res) => {
+              setError(res.error);
+            });
+          });
+        }
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
   };
 
   const fetchSessionfromDB = () => {
     fetch("http://localhost:3001/me", {
-      method: "GET",
-      //@credentialsをgetにもsetしたことによって、req.session.userの内容を表示することができた
       credentials: "include",
-    }).then((res) => {
-      res.json().then((res) => {
-        console.log("sessiondata", res.data);
-        dispatch(authActions.isLoggedIn(res.data.user));
+    })
+      .then((res) => {
+        res.json().then((res) => {
+          console.log("sessiondata", res.data);
+          dispatch(authActions.isLoggedIn(res.data.user));
+        });
+      })
+      .catch((err) => {
+        console.log("err", err);
       });
-    });
   };
 
   useEffect(() => {
@@ -78,12 +90,6 @@ const SignupModal = () => {
           <div className={classes.SignupContent}>
             <form
               className={classes.form}
-              //@@@@ページ遷移。reactrouterと違い擬似的なページ遷移ではない。
-              //そんためリロードされて今までのjsの情報が全て消える。(stateなども)
-              //現在いるURLをもとにactionのurlに続く。ただ3000でなく3001にしたい。
-              //react routerとは併用しない。traditional(ページが切り替わるたびにリロードされるタイプのHP)なサイトではまだ使われている。
-              // action="/signup"
-              // method="POST"
               onSubmit={(e) => {
                 e.preventDefault();
                 postSignupData();
@@ -161,15 +167,11 @@ const SignupModal = () => {
                   }}
                 />
               </div>
+              <div>
+                <p className={error && classes.errorMsg}>{error}</p>
+              </div>
               <div className={classes.button}>
-                <Button
-                  type="submit"
-                  variant="outlined"
-                  onClick={() => {
-                    // fetchSessionfromDB();
-                    // console.log(sessionStatus);
-                  }}
-                >
+                <Button type="submit" variant="outlined">
                   Sign up
                 </Button>
               </div>

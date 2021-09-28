@@ -30,20 +30,23 @@ const Header = () => {
       method: "POST",
       headers: { "content-type": "application/json" },
       credentials: "include",
-    }).then((res) => {
-      fetch("http://localhost:3001/logout", {
-        method: "GET",
-        headers: { "content-type": "application/json" },
-        //@credentialsをgetにもsetしたことによって、req.session.userの内容を表示することができた
-        credentials: "include",
-      }).then((res) => {
-        res.json().then((res) => {
-          console.log("logout", res);
-          dispatch(authActions.isLoggedIn(res.data));
-          console.log("sessionStatus logout", sessionStatus);
+    })
+      .then((res) => {
+        fetch("http://localhost:3001/logout", {
+          method: "GET",
+          headers: { "content-type": "application/json" },
+          credentials: "include",
+        }).then((res) => {
+          res.json().then((res) => {
+            console.log("logout", res);
+            dispatch(authActions.isLoggedIn(res.data));
+            console.log("sessionStatus logout", sessionStatus);
+          });
         });
+      })
+      .catch((err) => {
+        console.log("err", err);
       });
-    });
   };
 
   return (

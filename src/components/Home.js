@@ -74,38 +74,6 @@ const images = [
 const Home = () => {
   const sessionStatus = useSelector((state) => state.auth.fetchedSession);
 
-  //@ここでsignupを呼び出してしまってる。bodyを設定してないからpwなどがundefinedになる。
-  //@internal errorの原因
-  //@3000/meに行かなくてもfetchを使って3001/meにはいけるよ！ fetch/ajax
-  // const fetchSessionfromDB = async () => {
-  //   try {
-  //     const { data } = await api.fetchUserSignupUrl();
-  //     console.log("sessiondata");
-
-  //     //dispatch(authActions.isLoggedIn(data));
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  // const fetchSessionfromDB = async () => {
-  //   try {
-  //     const { data } = await api.fetchSessionData();
-  //     console.log("sessiondata", data);
-
-  //     dispatch(authActions.isLoggedIn("data"));
-
-  //     // console.log("sessionStatus", sessionStatus);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  // //fetch all questions from MongoDB
-  // useEffect(() => {
-  //   fetchSessionfromDB();
-  // }, [api.fetchSessionData]);
-
   return (
     <>
       <div className={classes.homeWrapper}>

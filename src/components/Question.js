@@ -19,44 +19,9 @@ const Question = () => {
 
   const dispatch = useDispatch();
 
-  //@@@questionsのstateが更新されない。(mongoDBからデータを引っ張りたい。)
-  //@@@内部関数が呼び出されてない。からconsole.logが出ない。
-
-  //---関数は下記のようにかける---
-  //ノーマルな関数
-  // function normalFunction() {
-  //   return 1;
-  // }
-
-  //アロー関数
-  // const arrowFunction = () => {
-  //   return 1;
-  // };
-
-  //アロー関数省略形
-  // const directReturnArrowFunction = () => 1;
-
-  //アロー関数内に内部関数がある。外側の関数が処理される時に内部関数も処理される。
-  // const arrowFunctionReturnsFunction = () => {
-  //   return () => {
-  //     return 1;
-  //   };
-  // };
-
-  // const a = arrowFunctionReturnsFunction();
-
-  // console.log(a);
-
-  //内部関数のあるアロー関数の省略形
-  // const shortArrowFunctionReturnsFunction = () => () => 1;
-
-  // const fetchQuestionsfromDB = () => async (dispatch) => {
   const fetchQuestionsfromDB = async () => {
     try {
       const { data } = await api.fetchQuestionsData();
-      console.log("fetchedData");
-      // const { data2 } = await api.fetchHomeData();
-
       dispatch(questionsActions.getQuestions(data));
     } catch (error) {
       console.error(error);
@@ -181,10 +146,3 @@ const Question = () => {
 };
 
 export default Question;
-
-//@@@ドキュメント: 質問1、選択し、次の質問
-//onClickの() => {}は関数をオブジェクト型で渡している
-//CORS error: ブラウザのセキュリティの制限からくるエラー。
-//-> ドメインが異なるとき(現在のドメインとAPIのドメイン)、に起こる。
-//-> errorを解除するにはをAPI側で許可を出さないといけない。(みているWebページのドメインからなら繋いでも良いよという許可)
-//->
