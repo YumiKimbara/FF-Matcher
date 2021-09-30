@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialAuthState = { fetchedSession: "no data", error: "" };
+const initialAuthState = { fetchedSession: "no data" };
 
 const authSlice = createSlice({
   name: "auth",
@@ -8,9 +8,6 @@ const authSlice = createSlice({
   reducers: {
     isLoggedIn(state, action) {
       state.fetchedSession = action.payload;
-    },
-    isError(state, action) {
-      state.error = action.payload;
     },
   },
 });

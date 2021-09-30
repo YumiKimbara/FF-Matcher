@@ -35,14 +35,11 @@ const Header = () => {
     })
       .then((res) => {
         fetch("http://localhost:3001/logout", {
-          method: "GET",
           headers: { "content-type": "application/json" },
           credentials: "include",
         }).then((res) => {
           res.json().then((res) => {
-            console.log("logout", res);
             dispatch(authActions.isLoggedIn(res.data));
-            console.log("sessionStatus logout", sessionStatus);
           });
         });
       })
@@ -88,7 +85,6 @@ const Header = () => {
                 type="submit"
                 onClick={() => {
                   postLogoutData();
-                  dispatch(authActions.isError(""));
                   history.replace("/");
                 }}
               >

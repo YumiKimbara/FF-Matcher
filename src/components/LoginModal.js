@@ -45,7 +45,6 @@ const LoginModal = () => {
           });
         }
         res.json().then((res) => {
-          console.log("res.error", res);
           !res.error && history.goBack("/");
           setError(res.error);
         });

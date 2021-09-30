@@ -44,13 +44,12 @@ const SignupModal = () => {
         } else {
           fetch("http://localhost:3001/signup", {
             credentials: "include",
-          }).then((res) => {
-            res.json().then((res) => {
-              !res.error && history.goBack("/");
-              setError(res.error);
-            });
           });
         }
+        res.json().then((res) => {
+          !res.error && history.goBack("/");
+          setError(res.error);
+        });
       })
       .catch((err) => {
         console.log("err", err);
