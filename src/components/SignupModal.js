@@ -26,6 +26,7 @@ const SignupModal = () => {
   const [error, setError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [emptyError, setEmptyError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   const postSignupData = () => {
     fetch("http://localhost:3001/signup", {
@@ -49,7 +50,12 @@ const SignupModal = () => {
           });
         }
         res.json().then((res) => {
-          !res.error && !error && history.goBack("/");
+          !res.error &&
+            !error &&
+            !emailError &&
+            !passwordError &&
+            !emptyError &&
+            history.goBack("/");
           setError(res.error);
         });
       })
@@ -84,15 +90,21 @@ const SignupModal = () => {
       password === "" ||
       confirmPassword === ""
     ) {
-      setEmptyError("Please fill out");
+      setEmptyError("Please fill out everything.");
     } else {
       setEmptyError("");
     }
 
     let checkEmail =
       /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}.[A-Za-z0-9]{1,}$/;
-    !checkEmail.test(email) && setEmailError("E-mail format is not correct");
+    !checkEmail.test(email) && setEmailError("Email format is not correct.");
     checkEmail.test(email) && setEmailError("");
+
+    password !== confirmPassword
+      ? setPasswordError(
+          "Password doesn't match with the password confirmation."
+        )
+      : setPasswordError("");
   };
 
   return (
@@ -193,13 +205,16 @@ const SignupModal = () => {
                   className={
                     (error && classes.errorMsg) ||
                     (emptyError && classes.errorMsg) ||
-                    (emailError && classes.errorMsg)
+                    (emailError && classes.errorMsg) ||
+                    (passwordError && classes.errorMsg)
                   }
                 >
                   {emptyError
                     ? emptyError
                     : emailError
                     ? emailError
+                    : passwordError
+                    ? passwordError
                     : error
                     ? error
                     : ""}
