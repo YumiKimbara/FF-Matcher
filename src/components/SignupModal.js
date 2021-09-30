@@ -24,6 +24,8 @@ const SignupModal = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [emptyError, setEmptyError] = useState("");
 
   const postSignupData = () => {
     fetch("http://localhost:3001/signup", {
@@ -47,7 +49,7 @@ const SignupModal = () => {
           });
         }
         res.json().then((res) => {
-          !res.error && history.goBack("/");
+          !res.error && !error && history.goBack("/");
           setError(res.error);
         });
       })
@@ -74,6 +76,24 @@ const SignupModal = () => {
   useEffect(() => {
     fetchSessionfromDB();
   }, [dispatch]);
+
+  const checkSignupInfo = () => {
+    if (
+      name === "" ||
+      email === "" ||
+      password === "" ||
+      confirmPassword === ""
+    ) {
+      setEmptyError("Please fill out");
+    } else {
+      setEmptyError("");
+    }
+
+    let checkEmail =
+      /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}.[A-Za-z0-9]{1,}$/;
+    !checkEmail.test(email) && setEmailError("E-mail format is not correct");
+    checkEmail.test(email) && setEmailError("");
+  };
 
   return (
     <Modal
@@ -169,10 +189,30 @@ const SignupModal = () => {
                 />
               </div>
               <div>
-                <p className={error && classes.errorMsg}>{error}</p>
+                <p
+                  className={
+                    (error && classes.errorMsg) ||
+                    (emptyError && classes.errorMsg) ||
+                    (emailError && classes.errorMsg)
+                  }
+                >
+                  {emptyError
+                    ? emptyError
+                    : emailError
+                    ? emailError
+                    : error
+                    ? error
+                    : ""}
+                </p>
               </div>
               <div className={classes.button}>
-                <Button type="submit" variant="outlined">
+                <Button
+                  type="submit"
+                  variant="outlined"
+                  onClick={() => {
+                    checkSignupInfo();
+                  }}
+                >
                   Sign up
                 </Button>
               </div>
