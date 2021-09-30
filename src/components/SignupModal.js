@@ -62,7 +62,7 @@ const SignupModal = () => {
       .then((res) => {
         res.json().then((res) => {
           console.log("sessiondata", res.data);
-          dispatch(authActions.isLoggedIn(res.data.user));
+          dispatch(authActions.isLoggedIn(res.data));
         });
       })
       .catch((err) => {

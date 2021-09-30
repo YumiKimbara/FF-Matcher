@@ -39,8 +39,9 @@
 }
 
 .errorMsg {
-  border: 2px solid orangered;
-  background-color: salmon;
+  border: 1px solid orangered;
+  background-color: #fcb1a6;
   color: red;
+  border-radius: 5px;
   padding: 0.3rem;
 }

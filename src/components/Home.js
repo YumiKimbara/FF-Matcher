@@ -83,7 +83,7 @@ const Home = () => {
         <Carousel>
           {images.map((image) => {
             return (
-              <div className={classes.imageWrapper}>
+              <div className={classes.imageWrapper} key={image.id}>
                 <img
                   className={classes.image}
                   key={image.id}

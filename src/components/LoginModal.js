@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button, Modal, Fade, TextField } from "@material-ui/core";
 // import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
@@ -20,6 +20,7 @@ const LoginModal = () => {
   const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
+  const errorStatus = useSelector((state) => state.auth.error);
   const sessionStatus = useSelector((state) => state.auth.fetchedSession);
 
   const toLogIn = useRouteMatch("/login")?.isExact ?? false;
@@ -36,16 +37,21 @@ const LoginModal = () => {
     })
       .then((res) => {
         if (res.status === 201) {
+          history.goBack("/");
           fetchSessionfromDB();
         } else {
           fetch("http://localhost:3001/login", {
             credentials: "include",
-          }).then((res) => {
-            res.json().then((res) => {
-              setError(res.error);
-            });
           });
         }
+        res.json().then((res) => {
+          console.log("res.error", res);
+          !res.error && history.goBack("/");
+
+          // console.log("errorStatus", errorStatus);
+          // dispatch(authActions.isError(res.error));
+          setError(res.error);
+        });
       })
       .catch((err) => {
         console.log("err", err);
@@ -58,8 +64,7 @@ const LoginModal = () => {
     })
       .then((res) => {
         res.json().then((res) => {
-          console.log("sessiondata", res.data);
-          dispatch(authActions.isLoggedIn(res.data.user));
+          dispatch(authActions.isLoggedIn(res.data));
         });
       })
       .catch((err) => {
@@ -70,6 +75,24 @@ const LoginModal = () => {
   useEffect(() => {
     fetchSessionfromDB();
   }, [dispatch]);
+
+  // useEffect(() => {
+  //   postLoginData();
+  // }, [error]);
+
+  // const useDidUpdateEffect = (fn, inputs) {
+  // const didMountRef = useRef(false);
+
+  // useEffect(() => {
+  //   if (didMountRef.current) {
+  //     postLoginData();
+  //     return;
+  //   } else {
+  //     didMountRef.current = true;
+  //   }
+  // }, [error]);
+  // }
+  // useDidUpdateEffect(postLoginData, error);
 
   return (
     <Modal
@@ -142,13 +165,7 @@ const LoginModal = () => {
                 <p className={error && classes.errorMsg}>{error}</p>
               </div>
               <div className={classes.button}>
-                <Button
-                  type="submit"
-                  variant="outlined"
-                  onClick={() => {
-                    typeof sessionStatus === "object" && history.goBack("/");
-                  }}
-                >
+                <Button type="submit" variant="outlined">
                   Log in
                 </Button>
               </div>

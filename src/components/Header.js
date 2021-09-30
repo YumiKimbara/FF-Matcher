@@ -9,9 +9,11 @@ import { Button } from "@material-ui/core";
 
 const Header = () => {
   const sessionStatus = useSelector((state) => state.auth.fetchedSession);
+  const errorStatus = useSelector((state) => state.auth.error);
+
   const history = useHistory();
 
-  console.log("sessionStatus", sessionStatus);
+  //console.log("sessionStatus", sessionStatus);
 
   let location = useLocation();
   const dispatch = useDispatch();
@@ -66,7 +68,7 @@ const Header = () => {
         {typeof sessionStatus !== "object" && (
           <div className={classes.signupLogin}>
             {authData.map((i) => (
-              <div>
+              <div key={i.id}>
                 <Link
                   to={{
                     pathname: `/${i.id}`,
@@ -86,6 +88,7 @@ const Header = () => {
                 type="submit"
                 onClick={() => {
                   postLogoutData();
+                  dispatch(authActions.isError(""));
                   history.replace("/");
                 }}
               >
