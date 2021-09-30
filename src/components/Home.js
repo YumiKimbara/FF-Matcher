@@ -94,16 +94,22 @@ const Home = () => {
             );
           })}
         </Carousel>
-        <div className={classes.button}>
-          <Link to={typeof sessionStatus === "object" ? "/questions" : "/"}>
-            <Button
-              variant="outlined"
-              disabled={typeof sessionStatus !== "object" ? true : false}
-            >
+        {typeof sessionStatus === "object" ? (
+          <div className={classes.button}>
+            <Link to={typeof sessionStatus === "object" ? "/questions" : "/"}>
+              <Button variant="outlined">Start</Button>
+            </Link>
+          </div>
+        ) : (
+          <div className={(classes.button, classes.buttonDisabled)}>
+            <Button className={classes.tooltip} variant="outlined">
               Start
+              <span className={classes.tooltiptext}>
+                Please sign up or log in to play.
+              </span>
             </Button>
-          </Link>
-        </div>
+          </div>
+        )}
       </div>
     </>
   );
