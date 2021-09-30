@@ -47,9 +47,6 @@ const LoginModal = () => {
         res.json().then((res) => {
           console.log("res.error", res);
           !res.error && history.goBack("/");
-
-          // console.log("errorStatus", errorStatus);
-          // dispatch(authActions.isError(res.error));
           setError(res.error);
         });
       })
@@ -75,24 +72,6 @@ const LoginModal = () => {
   useEffect(() => {
     fetchSessionfromDB();
   }, [dispatch]);
-
-  // useEffect(() => {
-  //   postLoginData();
-  // }, [error]);
-
-  // const useDidUpdateEffect = (fn, inputs) {
-  // const didMountRef = useRef(false);
-
-  // useEffect(() => {
-  //   if (didMountRef.current) {
-  //     postLoginData();
-  //     return;
-  //   } else {
-  //     didMountRef.current = true;
-  //   }
-  // }, [error]);
-  // }
-  // useDidUpdateEffect(postLoginData, error);
 
   return (
     <Modal

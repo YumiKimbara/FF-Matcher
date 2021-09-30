@@ -39,12 +39,14 @@ const SignupModal = () => {
     })
       .then((res) => {
         if (res.status === 201) {
+          history.goBack("/");
           fetchSessionfromDB();
         } else {
           fetch("http://localhost:3001/signup", {
             credentials: "include",
           }).then((res) => {
             res.json().then((res) => {
+              !res.error && history.goBack("/");
               setError(res.error);
             });
           });
