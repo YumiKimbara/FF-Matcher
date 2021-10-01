@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialAuthState = { fetchedSession: "no data" };
+const jsonData = JSON.parse(localStorage.getItem("login"));
+
+const initialAuthState = { fetchedSession: jsonData ? jsonData : "" };
 
 const authSlice = createSlice({
   name: "auth",

@@ -13,8 +13,6 @@ const Header = () => {
 
   const history = useHistory();
 
-  //console.log("sessionStatus", sessionStatus);
-
   let location = useLocation();
   const dispatch = useDispatch();
 
@@ -39,7 +37,7 @@ const Header = () => {
           credentials: "include",
         }).then((res) => {
           res.json().then((res) => {
-            dispatch(authActions.isLoggedIn(res.data));
+            dispatch(authActions.isLoggedIn(""));
           });
         });
       })
@@ -47,6 +45,9 @@ const Header = () => {
         console.log("err", err);
       });
   };
+
+  localStorage.setItem("login", JSON.stringify(sessionStatus));
+  const loginValue = JSON.parse(localStorage.getItem("login"));
 
   return (
     <>
@@ -56,13 +57,13 @@ const Header = () => {
             className={classes.logo}
             onClick={() => {
               initializeClickedId();
-              console.log(sessionStatus);
             }}
           >
             FF MATCHER
           </h1>
         </Link>
-        {typeof sessionStatus !== "object" && (
+
+        {typeof loginValue !== "object" && (
           <div className={classes.signupLogin}>
             {authData.map((i) => (
               <div key={i.id}>
@@ -78,12 +79,13 @@ const Header = () => {
             ))}
           </div>
         )}
-        {typeof sessionStatus === "object" && (
+        {typeof loginValue === "object" && (
           <div>
             <div>
               <Button
                 type="submit"
                 onClick={() => {
+                  localStorage.setItem("login", sessionStatus);
                   postLogoutData();
                   history.replace("/");
                 }}

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import * as api from "../api/index";
 import classes from "./Home.module.css";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const ff1 = "/images/ff1.png";
 const ff9 = "/images/ff9.png";
@@ -74,6 +75,9 @@ const images = [
 const Home = () => {
   const sessionStatus = useSelector((state) => state.auth.fetchedSession);
 
+  localStorage.setItem("login", JSON.stringify(sessionStatus));
+  const loginValue = JSON.parse(localStorage.getItem("login"));
+
   return (
     <>
       <div className={classes.homeWrapper}>
@@ -94,9 +98,9 @@ const Home = () => {
             );
           })}
         </Carousel>
-        {typeof sessionStatus === "object" ? (
+        {loginValue ? (
           <div className={classes.button}>
-            <Link to={typeof sessionStatus === "object" ? "/questions" : "/"}>
+            <Link to={loginValue ? "/questions" : "/"}>
               <Button variant="outlined">Start</Button>
             </Link>
           </div>

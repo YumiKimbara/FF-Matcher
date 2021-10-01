@@ -7,7 +7,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 // import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import classes from "./Modals.module.css";
 import { useHistory, useLocation, useRouteMatch } from "react-router-dom";
@@ -27,6 +27,7 @@ const SignupModal = () => {
   const [emailError, setEmailError] = useState("");
   const [emptyError, setEmptyError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const sessionStatus = useSelector((state) => state.auth.fetchedSession);
 
   const postSignupData = () => {
     fetch("http://localhost:3001/signup", {
@@ -70,7 +71,6 @@ const SignupModal = () => {
     })
       .then((res) => {
         res.json().then((res) => {
-          console.log("sessiondata", res.data);
           dispatch(authActions.isLoggedIn(res.data));
         });
       })
