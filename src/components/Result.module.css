@@ -22,6 +22,9 @@
   text-align: center;
 }
 .story {
+  height: 25vh;
+  overflow: scroll;
+  padding: 1rem;
   width: 70%;
   margin-bottom: 3rem;
 }

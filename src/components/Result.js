@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { resultsActions } from "../store/results";
 import { questionsActions } from "../store/questions";
-import { Button } from "@material-ui/core";
+import { Button, Card } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import * as api from "../api/index";
 
@@ -48,10 +48,10 @@ const Result = () => {
         <div className={classes.imageWrapper}>
           <img className={classes.image} src={result.image} alt="ffImage" />
         </div>
-        <div className={classes.story}>
+        <Card className={classes.story} style={{ overflow: "scroll" }}>
           <h3 className={classes.subTitle}>Story</h3>
           <p>{result.description}</p>
-        </div>
+        </Card>
         <Link to="/questions">
           <Button
             variant="outlined"
