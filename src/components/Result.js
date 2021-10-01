@@ -53,7 +53,11 @@ const Result = () => {
           <p>{result.description}</p>
         </div>
         <Link to="/questions">
-          <Button variant="outlined" onClick={() => initializeClickedId()}>
+          <Button
+            variant="outlined"
+            className={classes.playButton}
+            onClick={() => initializeClickedId()}
+          >
             Play Again
           </Button>
         </Link>
@@ -63,5 +67,3 @@ const Result = () => {
 };
 
 export default Result;
-
-//@@@@コピーライトスクエニ学習目的などと一文入れておく
