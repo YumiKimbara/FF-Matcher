@@ -74,3 +74,16 @@
   visibility: visible;
   opacity: 1;
 }
+
+/* mobile version */
+@media (max-width: 1024px) {
+  /* .image {
+    width: 100%;
+  }
+  h3 {
+    font-size: 2rem;
+  }
+
+  .button {
+  } */
+}

@@ -41,8 +41,6 @@ const Question = () => {
     questions.forEach((item, i) => {
       if (item._id === clickedId) {
         setCurrentQuestion(item);
-      } else {
-        //console.log(clickedId);
       }
     });
   }, [questionNum, clickedId]);

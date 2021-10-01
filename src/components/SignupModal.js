@@ -30,39 +30,44 @@ const SignupModal = () => {
   const sessionStatus = useSelector((state) => state.auth.fetchedSession);
 
   const postSignupData = () => {
-    fetch("http://localhost:3001/signup", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({
-        name: name,
-        email: email,
-        password: password,
-        confirmPassword: confirmPassword,
-      }),
-      credentials: "include",
-    })
-      .then((res) => {
-        if (res.status === 201) {
-          history.goBack("/");
-          fetchSessionfromDB();
-        } else {
-          fetch("http://localhost:3001/signup", {
-            credentials: "include",
-          });
-        }
-        res.json().then((res) => {
-          !res.error &&
-            !error &&
-            !emailError &&
-            !passwordError &&
-            !emptyError &&
-            history.goBack("/");
-          setError(res.error);
-        });
+    !emailError &&
+      !passwordError &&
+      !emptyError &&
+      fetch("http://localhost:3001/signup", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          password: password,
+          confirmPassword: confirmPassword,
+        }),
+        credentials: "include",
       })
-      .catch((err) => {
-        console.log("err", err);
-      });
+        .then((res) => {
+          if (res.status === 201) {
+            history.goBack("/");
+            fetchSessionfromDB();
+          } else {
+            fetch("http://localhost:3001/signup", {
+              credentials: "include",
+            });
+          }
+          res.json().then((res) => {
+            res.error && setError(res.error);
+
+            !res.error &&
+              !emailError &&
+              !passwordError &&
+              !emptyError &&
+              history.goBack("/");
+
+            console.log("error2", res.error);
+          });
+        })
+        .catch((err) => {
+          console.log("err", err);
+        });
   };
 
   const fetchSessionfromDB = () => {

@@ -26,3 +26,43 @@
 .login {
   margin-left: 0.5rem;
 }
+
+@media (max-width: 414px) {
+  .logo {
+    font-size: 1.5rem;
+  }
+  .signup {
+    margin-right: 0;
+  }
+
+  .login {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 375px) {
+  .logo {
+    font-size: 1.3rem;
+  }
+  h3 {
+    font-size: 1rem;
+  }
+  .header {
+    padding: 0 1rem;
+  }
+  button span {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 320px) {
+  button span {
+    font-size: 0.7rem;
+  }
+  .logo {
+    font-size: 1.1rem;
+  }
+  h3 {
+    font-size: 0.8rem;
+  }
+}
