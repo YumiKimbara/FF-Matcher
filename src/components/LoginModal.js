@@ -18,11 +18,8 @@ const LoginModal = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const history = useHistory();
-  const location = useLocation();
   const dispatch = useDispatch();
-  const errorStatus = useSelector((state) => state.auth.error);
-  const sessionStatus = useSelector((state) => state.auth.fetchedSession);
-
+  const [emptyError, setEmptyError] = useState("");
   const toLogIn = useRouteMatch("/login")?.isExact ?? false;
 
   const postLoginData = () => {
@@ -71,6 +68,14 @@ const LoginModal = () => {
   useEffect(() => {
     fetchSessionfromDB();
   }, [dispatch]);
+
+  const checkLoginInfo = () => {
+    if (email === "" || password === "") {
+      setEmptyError("Please fill out everything.");
+    } else {
+      setEmptyError("");
+    }
+  };
 
   return (
     <Modal
@@ -140,10 +145,23 @@ const LoginModal = () => {
                 <p className={classes.forgotPw}>forgot your password?</p>
               </Link> */}
               <div>
-                <p className={error && classes.errorMsg}>{error}</p>
+                <p
+                  className={
+                    (error && classes.errorMsg) ||
+                    (emptyError && classes.errorMsg)
+                  }
+                >
+                  {emptyError ? emptyError : error ? error : ""}
+                </p>
               </div>
               <div className={classes.button}>
-                <Button type="submit" variant="outlined">
+                <Button
+                  type="submit"
+                  variant="outlined"
+                  onClick={() => {
+                    checkLoginInfo();
+                  }}
+                >
                   Log in
                 </Button>
               </div>
