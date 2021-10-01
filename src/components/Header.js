@@ -57,6 +57,7 @@ const Header = () => {
             className={classes.logo}
             onClick={() => {
               initializeClickedId();
+              localStorage.removeItem("result");
             }}
           >
             FF MATCHER
@@ -86,6 +87,7 @@ const Header = () => {
                 type="submit"
                 onClick={() => {
                   localStorage.setItem("login", sessionStatus);
+                  localStorage.removeItem("result");
                   postLogoutData();
                   history.replace("/");
                 }}

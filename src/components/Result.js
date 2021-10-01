@@ -31,6 +31,8 @@ const Result = () => {
     results.forEach((item) => {
       if (item.resultId.toString() === resultId) {
         localStorage.setItem("result", JSON.stringify(item));
+        const a = JSON.parse(localStorage.getItem("result"));
+        console.log("a", a);
       }
     });
   }, [results]);
@@ -40,24 +42,30 @@ const Result = () => {
   };
 
   const resultData = JSON.parse(localStorage.getItem("result"));
-  console.log("resultData", resultData);
 
   return (
     <>
       <div className={classes.resultWrapper}>
-        <h3>Your favorite Final Fantasy is {resultData.name}</h3>
+        <h3>Your favorite Final Fantasy is {resultData && resultData.name}</h3>
         <div className={classes.imageWrapper}>
-          <img className={classes.image} src={resultData.image} alt="ffImage" />
+          <img
+            className={classes.image}
+            src={resultData && resultData.image}
+            alt="ffImage"
+          />
         </div>
         <Card className={classes.story} style={{ overflow: "scroll" }}>
           <h3 className={classes.subTitle}>Story</h3>
-          <p>{resultData.description}</p>
+          <p>{resultData && resultData.description}</p>
         </Card>
         <Link to="/questions">
           <Button
             variant="outlined"
             className={classes.playButton}
-            onClick={() => initializeClickedId()}
+            onClick={() => {
+              initializeClickedId();
+              localStorage.removeItem("result");
+            }}
           >
             Play Again
           </Button>
