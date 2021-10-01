@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { resultsActions } from "../store/results";
 import { questionsActions } from "../store/questions";
@@ -11,8 +11,6 @@ import classes from "./Result.module.css";
 const Result = () => {
   const results = useSelector((state) => state.results.fetchedData);
   const resultId = useSelector((state) => state.questions.clickedId);
-  const clickedId = useSelector((state) => state.questions.clickedId);
-  const [result, setResult] = useState("");
   const dispatch = useDispatch();
 
   const fetchResultsfromDB = async () => {
@@ -32,7 +30,7 @@ const Result = () => {
   useEffect(() => {
     results.forEach((item) => {
       if (item.resultId.toString() === resultId) {
-        setResult(item);
+        localStorage.setItem("result", JSON.stringify(item));
       }
     });
   }, [results]);
@@ -41,16 +39,19 @@ const Result = () => {
     dispatch(questionsActions.getClickedId(""));
   };
 
+  const resultData = JSON.parse(localStorage.getItem("result"));
+  console.log("resultData", resultData);
+
   return (
     <>
       <div className={classes.resultWrapper}>
-        <h3>Your favorite Final Fantasy is {result.name}</h3>
+        <h3>Your favorite Final Fantasy is {resultData.name}</h3>
         <div className={classes.imageWrapper}>
-          <img className={classes.image} src={result.image} alt="ffImage" />
+          <img className={classes.image} src={resultData.image} alt="ffImage" />
         </div>
         <Card className={classes.story} style={{ overflow: "scroll" }}>
           <h3 className={classes.subTitle}>Story</h3>
-          <p>{result.description}</p>
+          <p>{resultData.description}</p>
         </Card>
         <Link to="/questions">
           <Button
