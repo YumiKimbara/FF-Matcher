@@ -44,3 +44,82 @@
   bottom: 2rem;
   left: 1rem;
 }
+
+@media (max-width: 1024px) {
+  .chocobo {
+    top: 20rem;
+  }
+
+  .moogle {
+    top: 20rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .chocobo {
+    top: 25rem;
+  }
+
+  .moogle {
+    top: 25rem;
+  }
+  .cardContent p {
+    margin: 2rem 1rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .chocobo {
+    top: 25rem;
+  }
+
+  .moogle {
+    top: 25rem;
+  }
+  .cardContent p {
+    margin: 2rem 1rem;
+  }
+}
+
+@media (max-width: 414px) {
+  .chocobo {
+    width: 30%;
+    top: 22rem;
+  }
+  .moogle {
+    width: 30%;
+    top: 22rem;
+  }
+  .cardContent p {
+    margin: 2rem 0rem;
+  }
+  .cardWrapper {
+    margin: 2rem;
+  }
+  .card {
+    width: 100%;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .chocobo {
+    top: 19rem;
+    right: 0;
+  }
+  .moogle {
+    top: 19rem;
+    left: 0;
+  }
+  .cardContent p {
+    margin: 1rem 0rem;
+    font-size: 0.9rem;
+  }
+  .card {
+    min-height: 15rem;
+  }
+  .title {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+}
