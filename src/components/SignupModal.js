@@ -3,6 +3,7 @@ import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockIcon from "@material-ui/icons/Lock";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
 // import Visibility from "@material-ui/icons/Visibility";
 // import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
@@ -13,6 +14,16 @@ import classes from "./Modals.module.css";
 import { useHistory, useLocation, useRouteMatch } from "react-router-dom";
 
 import { authActions } from "../store/auth";
+
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    inputField: {
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "0.8rem",
+      },
+    },
+  })
+);
 
 const SignupModal = () => {
   const history = useHistory();
@@ -28,6 +39,7 @@ const SignupModal = () => {
   const [emptyError, setEmptyError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const sessionStatus = useSelector((state) => state.auth.fetchedSession);
+  const materialUIClasses = useStyles();
 
   const postSignupData = () => {
     !emailError &&
@@ -141,6 +153,9 @@ const SignupModal = () => {
                   name="name"
                   placeholder="name"
                   InputProps={{
+                    classes: {
+                      input: materialUIClasses.inputField,
+                    },
                     startAdornment: (
                       <InputAdornment>
                         <PersonOutlineIcon />
@@ -158,6 +173,9 @@ const SignupModal = () => {
                   placeholder="email"
                   name="email"
                   InputProps={{
+                    classes: {
+                      input: materialUIClasses.inputField,
+                    },
                     startAdornment: (
                       <InputAdornment>
                         <MailOutlineIcon />
@@ -176,6 +194,9 @@ const SignupModal = () => {
                   placeholder="password"
                   name="password"
                   InputProps={{
+                    classes: {
+                      input: materialUIClasses.inputField,
+                    },
                     startAdornment: (
                       <InputAdornment>
                         <LockIcon />
@@ -194,6 +215,9 @@ const SignupModal = () => {
                   placeholder="password confirmation"
                   name="confirmPassword"
                   InputProps={{
+                    classes: {
+                      input: materialUIClasses.inputField,
+                    },
                     startAdornment: (
                       <InputAdornment>
                         <LockIcon />

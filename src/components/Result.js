@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { resultsActions } from "../store/results";
 import { questionsActions } from "../store/questions";
@@ -31,8 +31,7 @@ const Result = () => {
     results.forEach((item) => {
       if (item.resultId.toString() === resultId) {
         localStorage.setItem("result", JSON.stringify(item));
-        const a = JSON.parse(localStorage.getItem("result"));
-        console.log("a", a);
+        const resultData = JSON.parse(localStorage.getItem("result"));
       }
     });
   }, [results]);
