@@ -12,6 +12,7 @@ const Result = () => {
   const results = useSelector((state) => state.results.fetchedData);
   const resultId = useSelector((state) => state.questions.clickedId);
   const dispatch = useDispatch();
+  const [result, setResult] = useState("");
 
   const fetchResultsfromDB = async () => {
     try {
@@ -30,8 +31,9 @@ const Result = () => {
   useEffect(() => {
     results.forEach((item) => {
       if (item.resultId.toString() === resultId) {
+        setResult(item);
         localStorage.setItem("result", JSON.stringify(item));
-        const resultData = JSON.parse(localStorage.getItem("result"));
+        JSON.parse(localStorage.getItem("result"));
       }
     });
   }, [results]);

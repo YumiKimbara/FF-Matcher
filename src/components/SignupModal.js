@@ -27,9 +27,7 @@ const useStyles = makeStyles((theme) =>
 
 const SignupModal = () => {
   const history = useHistory();
-  const location = useLocation();
   const dispatch = useDispatch();
-  const toSignup = useRouteMatch("/signup")?.isExact ?? false;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -38,8 +36,8 @@ const SignupModal = () => {
   const [emailError, setEmailError] = useState("");
   const [emptyError, setEmptyError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const sessionStatus = useSelector((state) => state.auth.fetchedSession);
   const materialUIClasses = useStyles();
+  const toSignup = useRouteMatch("/signup")?.isExact ?? false;
 
   const postSignupData = () => {
     !emailError &&
