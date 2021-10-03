@@ -105,7 +105,7 @@
 
 @media (max-width: 320px) {
   .button {
-    bottom: 0.5rem;
+    bottom: 1rem;
   }
   .modalBg {
     width: 85%;
