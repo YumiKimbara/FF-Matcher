@@ -3,17 +3,25 @@ import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockIcon from "@material-ui/icons/Lock";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import { createStyles, makeStyles } from "@material-ui/core/styles";
+import { createStyles, makeStyles, withStyles } from "@material-ui/core/styles";
 // import Visibility from "@material-ui/icons/Visibility";
 // import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import classes from "./Modals.module.css";
-import { useHistory, useLocation, useRouteMatch } from "react-router-dom";
+import { useHistory, useRouteMatch } from "react-router-dom";
 
 import { authActions } from "../store/auth";
+
+const GreenTextField = withStyles({
+  root: {
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#5b8e7d",
+    },
+  },
+})((props) => <TextField {...props} />);
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -146,8 +154,8 @@ const SignupModal = () => {
               autoComplete="off"
             >
               <div className={classes.input}>
-                <TextField
-                  variant="filled"
+                <GreenTextField
+                  variant="outlined"
                   name="name"
                   placeholder="name"
                   InputProps={{
@@ -166,8 +174,8 @@ const SignupModal = () => {
                 />
               </div>
               <div className={classes.input}>
-                <TextField
-                  variant="filled"
+                <GreenTextField
+                  variant="outlined"
                   placeholder="email"
                   name="email"
                   InputProps={{
@@ -186,9 +194,9 @@ const SignupModal = () => {
                 />
               </div>
               <div className={classes.input}>
-                <TextField
+                <GreenTextField
                   type="password"
-                  variant="filled"
+                  variant="outlined"
                   placeholder="password"
                   name="password"
                   InputProps={{
@@ -207,8 +215,8 @@ const SignupModal = () => {
                 />
               </div>
               <div className={classes.input}>
-                <TextField
-                  variant="filled"
+                <GreenTextField
+                  variant="outlined"
                   type="password"
                   placeholder="password confirmation"
                   name="confirmPassword"

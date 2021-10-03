@@ -6,13 +6,21 @@ import LockIcon from "@material-ui/icons/Lock";
 import InputAdornment from "@material-ui/core/InputAdornment";
 // import Visibility from "@material-ui/icons/Visibility";
 // import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import { createStyles, makeStyles } from "@material-ui/core/styles";
+import { createStyles, makeStyles, withStyles } from "@material-ui/core/styles";
 
 import { useSelector, useDispatch } from "react-redux";
 import classes from "./Modals.module.css";
 import { Link, useHistory, useLocation, useRouteMatch } from "react-router-dom";
 
 import { authActions } from "../store/auth";
+
+const GreenTextField = withStyles({
+  root: {
+    "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#5b8e7d",
+    },
+  },
+})((props) => <TextField {...props} />);
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -114,8 +122,8 @@ const LoginModal = () => {
               autoComplete="off"
             >
               <div className={classes.input}>
-                <TextField
-                  variant="filled"
+                <GreenTextField
+                  variant="outlined"
                   placeholder="email"
                   name="email"
                   InputProps={{
@@ -134,8 +142,8 @@ const LoginModal = () => {
                 />
               </div>
               <div className={classes.input}>
-                <TextField
-                  variant="filled"
+                <GreenTextField
+                  variant="outlined"
                   type="password"
                   placeholder="password"
                   name="password"
