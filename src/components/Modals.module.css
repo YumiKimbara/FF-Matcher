@@ -53,19 +53,21 @@
 @media (max-width: 1024px) and (max-height: 1366px) {
   .modalBg {
     height: 40%;
+    width: 50%;
   }
 }
 
 @media (max-width: 1024px) and (max-height: 789px) {
   .modalBg {
     height: 70%;
+    width: 50%;
   }
 }
 
 @media (max-width: 786px) and (max-height: 1024px) {
   .modalBg {
     height: 55%;
-    width: 50%;
+    width: 65%;
   }
   .errorMsg {
     font-size: 0.8rem;
@@ -75,6 +77,7 @@
 @media (max-width: 786px) and (max-height: 789px) {
   .modalBg {
     height: 70%;
+    width: 65%;
   }
   .errorMsg {
     font-size: 0.8rem;
