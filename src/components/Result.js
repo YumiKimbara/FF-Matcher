@@ -60,7 +60,6 @@ const Result = () => {
         <Link to="/questions">
           <Button
             variant="outlined"
-            className={classes.playButton}
             onClick={() => {
               initializeClickedId();
               localStorage.removeItem("result");

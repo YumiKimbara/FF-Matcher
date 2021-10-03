@@ -67,20 +67,23 @@
     height: 55%;
     width: 50%;
   }
+  .errorMsg {
+    font-size: 0.8rem;
+  }
 }
 
 @media (max-width: 786px) and (max-height: 789px) {
   .modalBg {
     height: 70%;
   }
+  .errorMsg {
+    font-size: 0.8rem;
+  }
 }
 
 @media (max-width: 540px) {
   .modalBg {
     height: 75%;
-  }
-  .errorMsg {
-    font-size: 0.8rem;
   }
 }
 
@@ -94,21 +97,17 @@
 @media (max-width: 375px) {
   .modalBg {
     height: 90%;
-    width: 70%;
   }
   .SignupContent {
     padding: 1rem;
-  }
-  .errorMsg {
-    font-size: 0.8rem;
   }
 }
 
 @media (max-width: 320px) {
   .button {
-    bottom: 1rem;
+    bottom: 0.5rem;
   }
-  .errorMsg {
-    font-size: 0.7rem;
+  .modalBg {
+    width: 85%;
   }
 }

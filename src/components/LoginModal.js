@@ -6,12 +6,23 @@ import LockIcon from "@material-ui/icons/Lock";
 import InputAdornment from "@material-ui/core/InputAdornment";
 // import Visibility from "@material-ui/icons/Visibility";
 // import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
 
 import { useSelector, useDispatch } from "react-redux";
 import classes from "./Modals.module.css";
 import { Link, useHistory, useLocation, useRouteMatch } from "react-router-dom";
 
 import { authActions } from "../store/auth";
+
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    inputField: {
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "0.8rem",
+      },
+    },
+  })
+);
 
 const LoginModal = () => {
   const [email, setEmail] = useState("");
@@ -21,6 +32,7 @@ const LoginModal = () => {
   const dispatch = useDispatch();
   const [emptyError, setEmptyError] = useState("");
   const toLogIn = useRouteMatch("/login")?.isExact ?? false;
+  const materialUIClasses = useStyles();
 
   const postLoginData = () => {
     fetch("http://localhost:3001/login", {
@@ -107,6 +119,9 @@ const LoginModal = () => {
                   placeholder="email"
                   name="email"
                   InputProps={{
+                    classes: {
+                      input: materialUIClasses.inputField,
+                    },
                     startAdornment: (
                       <InputAdornment>
                         <MailOutlineIcon />
@@ -125,6 +140,9 @@ const LoginModal = () => {
                   placeholder="password"
                   name="password"
                   InputProps={{
+                    classes: {
+                      input: materialUIClasses.inputField,
+                    },
                     startAdornment: (
                       <InputAdornment>
                         <LockIcon />

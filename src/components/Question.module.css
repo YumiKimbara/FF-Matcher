@@ -6,7 +6,7 @@
 
 .card {
   width: 60%;
-  min-height: 20rem;
+  min-height: 25rem;
   padding: 2rem;
 }
 
@@ -47,34 +47,21 @@
 
 @media (max-width: 1024px) {
   .chocobo {
-    top: 20rem;
+    top: 28rem;
   }
 
   .moogle {
-    top: 20rem;
+    top: 28rem;
   }
 }
 
 @media (max-width: 540px) {
   .chocobo {
-    top: 25rem;
+    width: 30%;
   }
 
   .moogle {
-    top: 25rem;
-  }
-  .cardContent p {
-    margin: 2rem 1rem;
-  }
-}
-
-@media (max-width: 540px) {
-  .chocobo {
-    top: 25rem;
-  }
-
-  .moogle {
-    top: 25rem;
+    width: 30%;
   }
   .cardContent p {
     margin: 2rem 1rem;
@@ -83,11 +70,9 @@
 
 @media (max-width: 414px) {
   .chocobo {
-    width: 30%;
     top: 22rem;
   }
   .moogle {
-    width: 30%;
     top: 22rem;
   }
   .cardContent p {
@@ -99,6 +84,7 @@
   .card {
     width: 100%;
     padding: 1rem;
+    min-height: 23rem;
   }
 }
 

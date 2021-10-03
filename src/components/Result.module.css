@@ -26,11 +26,7 @@
   overflow: scroll;
   padding: 1rem;
   width: 70%;
-  margin-bottom: 3rem;
-}
-
-.playButton {
-  padding-bottom: 3rem;
+  margin-bottom: 1rem;
 }
 
 @media (max-width: 414px) {
