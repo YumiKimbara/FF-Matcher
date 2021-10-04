@@ -7,6 +7,7 @@ import Home from "../components/Home";
 import Question from "../components/Question";
 import ForgotPw from "../components/ForgotPw";
 import Result from "../components/Result";
+import Footer from "../components/Footer";
 
 function App() {
   const location = useLocation();
@@ -24,6 +25,7 @@ function App() {
         <Route exact path="/questions" component={Question} />
         <Route exact path="/result" component={Result} />
       </Switch>
+      <Footer />
       {background && <Route path="/login" children={<LoginModal />} />}
       {background && <Route path="/signup" children={<SignupModal />} />}
     </>
