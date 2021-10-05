@@ -76,14 +76,8 @@
 }
 
 /* mobile version */
-@media (max-width: 1024px) {
-  /* .image {
-    width: 100%;
+@media (max-width: 414px) {
+  .homeWrapper {
+    margin: 2rem;
   }
-  h3 {
-    font-size: 2rem;
-  }
-
-  .button {
-  } */
 }

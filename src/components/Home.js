@@ -1,13 +1,12 @@
 import { Button } from "@material-ui/core";
 import Carousel from "react-material-ui-carousel";
-import { Link } from "react-router-dom";
-import * as api from "../api/index";
-import classes from "./Home.module.css";
-import { useSelector } from "react-redux";
-import { useEffect } from "react";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
 
-const ff1 = "/images/ff1.png";
-const ff9 = "/images/ff9.png";
+import { Link } from "react-router-dom";
+
+import classes from "./Home.module.css";
+
+import { useSelector } from "react-redux";
 
 const images = [
   {
@@ -72,8 +71,19 @@ const images = [
   },
 ];
 
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    carouselResize: {
+      [theme.breakpoints.down("sm")]: {
+        // fontSize: "0.8rem",
+      },
+    },
+  })
+);
+
 const Home = () => {
   const sessionStatus = useSelector((state) => state.auth.fetchedSession);
+  const materialUIClasses = useStyles();
 
   localStorage.setItem("login", JSON.stringify(sessionStatus));
   const loginValue = JSON.parse(localStorage.getItem("login"));
@@ -84,7 +94,7 @@ const Home = () => {
         <div>
           <h3>Find Your Favorite Final Fantasy </h3>
         </div>
-        <Carousel>
+        <Carousel className={materialUIClasses.carouselResize}>
           {images.map((image) => {
             return (
               <div className={classes.imageWrapper} key={image.id}>
