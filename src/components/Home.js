@@ -73,9 +73,10 @@ const images = [
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    carouselResize: {
+    resizedCarousel: {
       [theme.breakpoints.down("sm")]: {
-        // fontSize: "0.8rem",
+        //paddingを変えればボタンのサイズも変わる。
+        padding: "5px",
       },
     },
   })
@@ -94,7 +95,17 @@ const Home = () => {
         <div>
           <h3>Find Your Favorite Final Fantasy </h3>
         </div>
-        <Carousel className={materialUIClasses.carouselResize}>
+        <Carousel
+          navButtonsProps={{
+            classes: {
+              root: materialUIClasses.resizedCarousel,
+            },
+            style: {
+              // backgroundColor: "green", // 2
+              // padding: "5px",
+            },
+          }}
+        >
           {images.map((image) => {
             return (
               <div className={classes.imageWrapper} key={image.id}>

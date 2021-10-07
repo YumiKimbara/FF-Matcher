@@ -78,6 +78,6 @@
 /* mobile version */
 @media (max-width: 414px) {
   .homeWrapper {
-    margin: 2rem;
+    margin: 2rem 0.5rem;
   }
 }
