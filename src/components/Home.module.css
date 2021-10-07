@@ -81,3 +81,10 @@
     margin: 2rem 0.5rem;
   }
 }
+
+@media (max-width: 320px) {
+  .tooltip .tooltiptext {
+    padding: 5px;
+    left: 40%;
+  }
+}
