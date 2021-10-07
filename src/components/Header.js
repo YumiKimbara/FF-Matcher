@@ -9,7 +9,6 @@ import { Button } from "@material-ui/core";
 
 const Header = () => {
   const sessionStatus = useSelector((state) => state.auth.fetchedSession);
-  const errorStatus = useSelector((state) => state.auth.error);
 
   const history = useHistory();
 

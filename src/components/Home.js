@@ -75,7 +75,6 @@ const useStyles = makeStyles((theme) =>
   createStyles({
     resizedCarousel: {
       [theme.breakpoints.down("sm")]: {
-        //paddingを変えればボタンのサイズも変わる。
         padding: "5px",
       },
     },
@@ -99,10 +98,6 @@ const Home = () => {
           navButtonsProps={{
             classes: {
               root: materialUIClasses.resizedCarousel,
-            },
-            style: {
-              // backgroundColor: "green", // 2
-              // padding: "5px",
             },
           }}
         >

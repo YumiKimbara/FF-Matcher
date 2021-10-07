@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Button, Modal, Fade, TextField } from "@material-ui/core";
 // import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
@@ -8,9 +8,9 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 // import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { createStyles, makeStyles, withStyles } from "@material-ui/core/styles";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import classes from "./Modals.module.css";
-import { Link, useHistory, useLocation, useRouteMatch } from "react-router-dom";
+import { useHistory, useRouteMatch } from "react-router-dom";
 
 import { authActions } from "../store/auth";
 
@@ -162,14 +162,6 @@ const LoginModal = () => {
                   }}
                 />
               </div>
-              {/* <Link
-                to={{
-                  pathname: "/forgotpw",
-                  //state.backgroundを上書きしたいができない。
-                }}
-              >
-                <p className={classes.forgotPw}>forgot your password?</p>
-              </Link> */}
               <div>
                 <p
                   className={

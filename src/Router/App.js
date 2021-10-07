@@ -5,7 +5,6 @@ import LoginModal from "../components/LoginModal";
 import SignupModal from "../components/SignupModal";
 import Home from "../components/Home";
 import Question from "../components/Question";
-import ForgotPw from "../components/ForgotPw";
 import Result from "../components/Result";
 import Footer from "../components/Footer";
 
@@ -19,7 +18,6 @@ function App() {
     <>
       <Header />
       <Switch location={background || location}>
-        <Route exact path="/forgotpw" component={ForgotPw} />
         <Route exact path="/" component={Home} />
         <Route exact path="/me" component={Home} />
         <Route exact path="/questions" component={Question} />
