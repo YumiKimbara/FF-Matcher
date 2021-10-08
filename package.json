@@ -16,13 +16,16 @@
     "react-material-ui-carousel": "^2.3.1",
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3"
+    "react-scripts": "4.0.3",
+    "serve": "^12.0.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "heroku-postbuild": "npm install && npm run build",
-    "build": "react-scripts build"
+    "dev": "react-scripts start",
+    "start": "serve -s build",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
