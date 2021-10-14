@@ -43,7 +43,7 @@ const LoginModal = () => {
   const materialUIClasses = useStyles();
 
   const postLoginData = () => {
-    fetch("http://localhost:3001/login", {
+    fetch("http://ec2-3-96-153-119.ca-central-1.compute.amazonaws.com/api/login", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
@@ -57,7 +57,7 @@ const LoginModal = () => {
           history.goBack("/");
           fetchSessionfromDB();
         } else {
-          fetch("http://localhost:3001/login", {
+          fetch("http://ec2-3-96-153-119.ca-central-1.compute.amazonaws.com/api/login", {
             credentials: "include",
           });
         }
@@ -72,7 +72,7 @@ const LoginModal = () => {
   };
 
   const fetchSessionfromDB = () => {
-    fetch("http://localhost:3001/me", {
+    fetch("http://ec2-3-96-153-119.ca-central-1.compute.amazonaws.com/api/me", {
       credentials: "include",
     })
       .then((res) => {
