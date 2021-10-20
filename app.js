@@ -28,7 +28,12 @@ const store = new MongoDBStore({
 const questionRoutes = require("./routes/questionsRoutes");
 const resultsRoutes = require("./routes/resultsRoutes");
 const authRoutes = require("./routes/auth");
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(
+  cors({
+    origin: "http://ec2-3-96-153-119.ca-central-1.compute.amazonaws.com",
+    credentials: true,
+  })
+);
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -51,7 +56,6 @@ app.use(
 //   console.log("hello");
 //   next();
 // });
-
 app.use("/questions", questionRoutes);
 app.use("/result", resultsRoutes);
 app.use(authRoutes);
