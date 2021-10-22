@@ -1,0 +1,19 @@
+.copyRight {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 1rem 1rem 3rem 1rem;
+  text-align: center;
+}
+
+@media (max-width: 414px) {
+  .copyRight {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .copyRight {
+    font-size: 0.5rem;
+  }
+}

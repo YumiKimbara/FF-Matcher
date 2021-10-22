@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+.header {
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #d8e2dc;
+  color: white;
+  padding: 0 2rem;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+  font-family: "Satisfy", cursive;
+  font-size: 1.7rem;
+}
+
+.signupLogin {
+  display: flex;
+}
+
+.signup {
+  margin-right: 0.5rem;
+}
+
+.login {
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 414px) {
+  .logo {
+    font-size: 1.5rem;
+  }
+  .signup {
+    margin-right: 0;
+  }
+
+  .login {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 375px) {
+  .logo {
+    font-size: 1.3rem;
+  }
+  h3 {
+    font-size: 1rem;
+  }
+  .header {
+    padding: 0 1rem;
+  }
+  button span {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 320px) {
+  button span {
+    font-size: 0.7rem;
+  }
+  .logo {
+    font-size: 1.1rem;
+  }
+  h3 {
+    font-size: 0.8rem;
+  }
+}

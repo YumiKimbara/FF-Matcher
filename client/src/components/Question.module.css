@@ -1,0 +1,111 @@
+.cardWrapper {
+  display: flex;
+  justify-content: center;
+  margin: 5rem;
+}
+
+.card {
+  width: 60%;
+  min-height: 25rem;
+  padding: 2rem;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cardContent p {
+  margin: 2rem;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.qButton {
+  margin: 1rem;
+}
+
+.chocobo {
+  width: 20%;
+  position: absolute;
+  bottom: 2rem;
+  right: 1rem;
+}
+
+.moogle {
+  width: 20%;
+  position: absolute;
+  bottom: 2rem;
+  left: 1rem;
+}
+
+@media (max-width: 1024px) {
+  .chocobo {
+    top: 28rem;
+  }
+
+  .moogle {
+    top: 28rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .chocobo {
+    width: 30%;
+  }
+
+  .moogle {
+    width: 30%;
+  }
+  .cardContent p {
+    margin: 2rem 1rem;
+  }
+}
+
+@media (max-width: 414px) {
+  .chocobo {
+    top: 22rem;
+  }
+  .moogle {
+    top: 22rem;
+  }
+  .cardContent p {
+    margin: 2rem 0rem;
+  }
+  .cardWrapper {
+    margin: 2rem;
+  }
+  .card {
+    width: 100%;
+    padding: 1rem;
+    min-height: 23rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .chocobo {
+    top: 19rem;
+    right: 0;
+  }
+  .moogle {
+    top: 19rem;
+    left: 0;
+  }
+  .cardContent p {
+    margin: 1rem 0rem;
+    font-size: 0.9rem;
+  }
+  .card {
+    min-height: 15rem;
+  }
+  .title {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+}
