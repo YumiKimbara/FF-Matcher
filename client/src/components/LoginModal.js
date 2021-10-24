@@ -43,23 +43,29 @@ const LoginModal = () => {
   const materialUIClasses = useStyles();
 
   const postLoginData = () => {
-    fetch("http://ec2-3-96-153-119.ca-central-1.compute.amazonaws.com/api/login", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-      credentials: "include",
-    })
+    fetch(
+      "http://ec2-35-183-87-67.ca-central-1.compute.amazonaws.com/api/login",
+      {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+        credentials: "include",
+      }
+    )
       .then((res) => {
         if (res.status === 201) {
           history.goBack("/");
           fetchSessionfromDB();
         } else {
-          fetch("http://ec2-3-96-153-119.ca-central-1.compute.amazonaws.com/api/login", {
-            credentials: "include",
-          });
+          fetch(
+            "http://ec2-35-183-87-67.ca-central-1.compute.amazonaws.com/api/login",
+            {
+              credentials: "include",
+            }
+          );
         }
         res.json().then((res) => {
           !res.error && history.goBack("/");
@@ -72,7 +78,7 @@ const LoginModal = () => {
   };
 
   const fetchSessionfromDB = () => {
-    fetch("http://ec2-3-96-153-119.ca-central-1.compute.amazonaws.com/api/me", {
+    fetch("http://ec2-35-183-87-67.ca-central-1.compute.amazonaws.com/api/me", {
       credentials: "include",
     })
       .then((res) => {

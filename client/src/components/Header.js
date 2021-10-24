@@ -25,16 +25,22 @@ const Header = () => {
   ];
 
   const postLogoutData = () => {
-    fetch("http://ec2-3-96-153-119.ca-central-1.compute.amazonaws.com/api/logout", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      credentials: "include",
-    })
+    fetch(
+      "http://ec2-35-183-87-67.ca-central-1.compute.amazonaws.com/api/logout",
+      {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        credentials: "include",
+      }
+    )
       .then((res) => {
-        fetch("http://ec2-3-96-153-119.ca-central-1.compute.amazonaws.com/api/logout", {
-          headers: { "content-type": "application/json" },
-          credentials: "include",
-        }).then((res) => {
+        fetch(
+          "http://ec2-35-183-87-67.ca-central-1.compute.amazonaws.com/api/logout",
+          {
+            headers: { "content-type": "application/json" },
+            credentials: "include",
+          }
+        ).then((res) => {
           res.json().then((res) => {
             dispatch(authActions.isLoggedIn(""));
           });
