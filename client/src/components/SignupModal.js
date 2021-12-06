@@ -52,7 +52,7 @@ const SignupModal = () => {
       !passwordError &&
       !emptyError &&
       fetch(
-        "http://ec2-35-183-87-67.ca-central-1.compute.amazonaws.com/api/signup",
+        "http://ec2-3-99-140-59.ca-central-1.compute.amazonaws.com/api/signup",
         {
           method: "POST",
           headers: { "content-type": "application/json" },
@@ -71,7 +71,7 @@ const SignupModal = () => {
             fetchSessionfromDB();
           } else {
             fetch(
-              "http://ec2-35-183-87-67.ca-central-1.compute.amazonaws.com/api/signup",
+              "http://ec2-3-99-140-59.ca-central-1.compute.amazonaws.com/api/signup",
               {
                 credentials: "include",
               }
@@ -95,7 +95,7 @@ const SignupModal = () => {
   };
 
   const fetchSessionfromDB = () => {
-    fetch("http://ec2-35-183-87-67.ca-central-1.compute.amazonaws.com/api/me", {
+    fetch("http://ec2-3-99-140-59.ca-central-1.compute.amazonaws.com/api/me", {
       credentials: "include",
     })
       .then((res) => {
