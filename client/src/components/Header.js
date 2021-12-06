@@ -26,7 +26,7 @@ const Header = () => {
 
   const postLogoutData = () => {
     fetch(
-      "http://ec2-3-99-140-59.ca-central-1.compute.amazonaws.com/api/logout",
+      "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/logout",
       {
         method: "POST",
         headers: { "content-type": "application/json" },
@@ -35,7 +35,7 @@ const Header = () => {
     )
       .then((res) => {
         fetch(
-          "http://ec2-3-99-140-59.ca-central-1.compute.amazonaws.com/api/logout",
+          "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/logout",
           {
             headers: { "content-type": "application/json" },
             credentials: "include",
