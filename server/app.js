@@ -30,7 +30,7 @@ const resultsRoutes = require("./routes/resultsRoutes");
 const authRoutes = require("./routes/auth");
 app.use(
   cors({
-    origin: "http://ec2-3-99-140-59.ca-central-1.compute.amazonaws.com",
+    origin: "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com",
     credentials: true,
   })
 );
