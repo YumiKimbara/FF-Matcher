@@ -19,4 +19,4 @@ React, Redux, Node.js, Express.js, MongoDB, Material UI, aws
 
 ### Website
 
-Check the website: [DEMO](http://ec2-35-183-87-67.ca-central-1.compute.amazonaws.com/)
+Check the website: [DEMO](http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/)
