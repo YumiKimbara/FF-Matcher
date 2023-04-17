@@ -98,7 +98,7 @@ const SignupModal = () => {
 
   const fetchSessionfromDB = () => {
     fetch(
-      "http://localhost:3001/signup",
+      "http://localhost:3001/me",
       // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/me",
       {
         credentials: "include",
