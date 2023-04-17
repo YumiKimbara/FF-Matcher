@@ -52,7 +52,8 @@ const SignupModal = () => {
       !passwordError &&
       !emptyError &&
       fetch(
-        "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/signup",
+        "http://localhost:3001/signup",
+        // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/signup",
         {
           method: "POST",
           headers: { "content-type": "application/json" },
@@ -71,7 +72,8 @@ const SignupModal = () => {
             fetchSessionfromDB();
           } else {
             fetch(
-              "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/signup",
+              "http://localhost:3001/signup",
+              // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/signup",
               {
                 credentials: "include",
               }
@@ -96,7 +98,8 @@ const SignupModal = () => {
 
   const fetchSessionfromDB = () => {
     fetch(
-      "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/me",
+      "http://localhost:3001/signup",
+      // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/me",
       {
         credentials: "include",
       }
@@ -148,8 +151,7 @@ const SignupModal = () => {
       onClose={() => {
         history.goBack();
       }}
-      closeAfterTransition
-    >
+      closeAfterTransition>
       <Fade in={toSignup}>
         <div className={(classes.cardWrapper, classes.modalBg)}>
           <div className={classes.SignupContent}>
@@ -160,8 +162,7 @@ const SignupModal = () => {
                 postSignupData();
               }}
               noValidate
-              autoComplete="off"
-            >
+              autoComplete="off">
               <div className={classes.input}>
                 <GreenTextField
                   variant="outlined"
@@ -251,8 +252,7 @@ const SignupModal = () => {
                     (emptyError && classes.errorMsg) ||
                     (emailError && classes.errorMsg) ||
                     (passwordError && classes.errorMsg)
-                  }
-                >
+                  }>
                   {emptyError
                     ? emptyError
                     : emailError
@@ -270,8 +270,7 @@ const SignupModal = () => {
                   variant="outlined"
                   onClick={() => {
                     checkSignupInfo();
-                  }}
-                >
+                  }}>
                   Sign up
                 </Button>
               </div>

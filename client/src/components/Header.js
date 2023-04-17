@@ -26,7 +26,8 @@ const Header = () => {
 
   const postLogoutData = () => {
     fetch(
-      "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/logout",
+      "http://localhost:3001/logout",
+      // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/logout",
       {
         method: "POST",
         headers: { "content-type": "application/json" },
@@ -35,7 +36,8 @@ const Header = () => {
     )
       .then((res) => {
         fetch(
-          "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/logout",
+          "http://localhost:3001/logout",
+          // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/logout",
           {
             headers: { "content-type": "application/json" },
             credentials: "include",
@@ -63,8 +65,7 @@ const Header = () => {
             onClick={() => {
               initializeClickedId();
               localStorage.removeItem("result");
-            }}
-          >
+            }}>
             FF MATCHER
           </h1>
         </Link>
@@ -77,8 +78,7 @@ const Header = () => {
                   to={{
                     pathname: `/${i.id}`,
                     state: { background: location },
-                  }}
-                >
+                  }}>
                   <Button className={classes.signup}>{i.title}</Button>
                 </Link>
               </div>
@@ -95,8 +95,7 @@ const Header = () => {
                   localStorage.removeItem("result");
                   postLogoutData();
                   history.replace("/");
-                }}
-              >
+                }}>
                 Log out
               </Button>
             </div>

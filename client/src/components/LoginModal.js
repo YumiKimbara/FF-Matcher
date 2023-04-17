@@ -44,7 +44,8 @@ const LoginModal = () => {
 
   const postLoginData = () => {
     fetch(
-      "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/login",
+      "http://localhost:3001/login",
+      // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/login",
       {
         method: "POST",
         headers: { "content-type": "application/json" },
@@ -61,7 +62,8 @@ const LoginModal = () => {
           fetchSessionfromDB();
         } else {
           fetch(
-            "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/login",
+            "http://localhost:3001/login",
+            // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/login",
             {
               credentials: "include",
             }
@@ -79,7 +81,8 @@ const LoginModal = () => {
 
   const fetchSessionfromDB = () => {
     fetch(
-      "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/me",
+      "http://localhost:3001/me",
+      // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/me",
       {
         credentials: "include",
       }
@@ -116,8 +119,7 @@ const LoginModal = () => {
       onClose={() => {
         history.goBack();
       }}
-      closeAfterTransition
-    >
+      closeAfterTransition>
       <Fade in={toLogIn}>
         <div className={(classes.cardWrapper, classes.modalBg)}>
           <div className={classes.SignupContent}>
@@ -128,8 +130,7 @@ const LoginModal = () => {
                 postLoginData();
               }}
               noValidate
-              autoComplete="off"
-            >
+              autoComplete="off">
               <div className={classes.input}>
                 <GreenTextField
                   variant="outlined"
@@ -176,8 +177,7 @@ const LoginModal = () => {
                   className={
                     (error && classes.errorMsg) ||
                     (emptyError && classes.errorMsg)
-                  }
-                >
+                  }>
                   {emptyError ? emptyError : error ? error : ""}
                 </p>
               </div>
@@ -187,8 +187,7 @@ const LoginModal = () => {
                   variant="outlined"
                   onClick={() => {
                     checkLoginInfo();
-                  }}
-                >
+                  }}>
                   Log in
                 </Button>
               </div>
