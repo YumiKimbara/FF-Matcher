@@ -28,7 +28,7 @@ const authRoutes = require("./routes/auth");
 app.use(
   cors({
     // origin: "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com",
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://ff-matcher-client.onrender.com"],
     credentials: true,
   })
 );
