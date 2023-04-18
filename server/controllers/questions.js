@@ -6,7 +6,7 @@ exports.getQuestions = async (req, res) => {
 
     return res
       .status(200)
-      .set("access-control-allow-origin", "http://localhost:3000")
+      .set("access-control-allow-origin", "https://ff-matcher.onrender.com")
       .json(questions);
   } catch (error) {
     res.status(404).json({ message: error.message });
