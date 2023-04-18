@@ -2,7 +2,7 @@
   "name": "ff-matcher",
   "version": "1.0.0",
   "description": "This is a fullstack application that you can find your favorite Final Fantasy series by just answering a few questions! Node.js is used for the authentication and mongoDB is used for storeing data.",
-  "main": "index.js",
+  "main": "./server/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cd ./server && node app.js"
