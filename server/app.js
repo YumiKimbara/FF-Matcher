@@ -11,10 +11,6 @@ const port = process.env.PORT || 3001;
 //import models
 const User = require("./models/user");
 
-const MONGODB_URI =
-  // "mongodb+srv://yumi:HNYp6CMgzItJL9yA@cluster0.lbe7x.mongodb.net/questions?retryWrites=true&w=majority";
-  "mongodb+srv://yumi:kHWBBr4BJOlrq98b@cluster0.lbe7x.mongodb.net/questions?retryWrites=true&w=majority";
-
 const app = express();
 
 //Store session in the MongoDBStore
@@ -71,7 +67,10 @@ app.get("*", (req, res) => {
 
 //connect to mongoose
 mongoose
-  .connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then((result) => {
     console.log("connected");
   })
