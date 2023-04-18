@@ -1,11 +1,8 @@
 import { useState, useEffect } from "react";
 import { Button, Modal, Fade, TextField } from "@material-ui/core";
-// import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import LockIcon from "@material-ui/icons/Lock";
 import InputAdornment from "@material-ui/core/InputAdornment";
-// import Visibility from "@material-ui/icons/Visibility";
-// import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { createStyles, makeStyles, withStyles } from "@material-ui/core/styles";
 
 import { useDispatch } from "react-redux";
