@@ -4,7 +4,7 @@ const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const cors = require("cors");
 const path = require("path");
-const port = process.env.PORT || 3001;
+const dotenv = require("dotenv");
 
 // const csrf = require("csurf");
 
@@ -12,6 +12,7 @@ const port = process.env.PORT || 3001;
 const User = require("./models/user");
 
 const app = express();
+dotenv.config();
 
 //Store session in the MongoDBStore
 const store = new MongoDBStore({
@@ -64,6 +65,8 @@ app.use(express.static(path.join(__dirname, "build")));
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "/build/index.html"));
 });
+
+const port = process.env.PORT || 3001;
 
 //connect to mongoose
 mongoose
