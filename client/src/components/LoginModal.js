@@ -41,8 +41,8 @@ const LoginModal = () => {
 
   const postLoginData = () => {
     fetch(
-      "https://ff-matcher-api.onrender.com/api/login",
-      // "http://localhost:3001/login",
+      // "https://ff-matcher-api.onrender.com/api/login",
+      "http://localhost:3001/api/login",
       // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/login",
       {
         method: "POST",
@@ -61,8 +61,8 @@ const LoginModal = () => {
           fetchSessionfromDB();
         } else {
           fetch(
-            "https://ff-matcher-api.onrender.com/api/login",
-            // "http://localhost:3001/login",
+            // "https://ff-matcher-api.onrender.com/api/login",
+            "http://localhost:3001/api/login",
             // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/login",
             {
               credentials: "include",
@@ -82,8 +82,8 @@ const LoginModal = () => {
 
   const fetchSessionfromDB = () => {
     fetch(
-      "https://ff-matcher-api.onrender.com/api/me",
-      // "http://localhost:3001/me",
+      // "https://ff-matcher-api.onrender.com/api/me",
+      "http://localhost:3001/api/me",
       // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/me",
       {
         credentials: "include",
