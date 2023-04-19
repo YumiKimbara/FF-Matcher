@@ -26,7 +26,7 @@ const Header = () => {
 
   const postLogoutData = () => {
     fetch(
-      "https://ff-matcher-api.onrender.com/logout",
+      "https://ff-matcher-api.onrender.com/api/logout",
       // "http://localhost:3001/logout",
       // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/logout",
       {
@@ -37,7 +37,7 @@ const Header = () => {
     )
       .then((res) => {
         fetch(
-          "https://ff-matcher-api.onrender.com/logout",
+          "https://ff-matcher-api.onrender.com/api/logout",
           // "http://localhost:3001/logout",
           // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/logout",
           {
