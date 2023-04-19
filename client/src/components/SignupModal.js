@@ -65,6 +65,7 @@ const SignupModal = () => {
             confirmPassword: confirmPassword,
           }),
           credentials: "include",
+          mode: "cors",
         }
       )
         .then((res) => {
@@ -78,6 +79,7 @@ const SignupModal = () => {
               // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/signup",
               {
                 credentials: "include",
+                mode: "cors",
               }
             );
           }
@@ -105,6 +107,7 @@ const SignupModal = () => {
       // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/me",
       {
         credentials: "include",
+        mode: "cors",
       }
     )
       .then((res) => {

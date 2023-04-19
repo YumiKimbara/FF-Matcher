@@ -33,6 +33,7 @@ const Header = () => {
         method: "POST",
         headers: { "content-type": "application/json" },
         credentials: "include",
+        mode: "cors",
       }
     )
       .then((res) => {
@@ -43,6 +44,7 @@ const Header = () => {
           {
             headers: { "content-type": "application/json" },
             credentials: "include",
+            mode: "cors",
           }
         ).then((res) => {
           res.json().then((res) => {
