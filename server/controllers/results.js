@@ -12,7 +12,7 @@ exports.getResults = async (req, res) => {
         //   "Access-Control-Allow-Credentials": true,
         // })
         // .set("access-control-allow-origin", "http://localhost:3000")
-        .set("access-control-allow-origin", "https://ff-matcher.onrender.com")
+        // .set("access-control-allow-origin", "https://ff-matcher.onrender.com")
         .json(results)
     );
   } catch (error) {

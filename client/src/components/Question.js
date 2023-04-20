@@ -75,8 +75,7 @@ const Question = () => {
                                 e.target.closest("button").name
                               )
                             );
-                          }}
-                        >
+                          }}>
                           {currentQuestion.options[0].label}
                         </Button>
                       </Link>
@@ -92,8 +91,7 @@ const Question = () => {
                             )
                           );
                           setQuestionNum(questionNum + 1);
-                        }}
-                      >
+                        }}>
                         {currentQuestion.options[0].label}
                       </Button>
                     )}
@@ -110,8 +108,7 @@ const Question = () => {
                                 e.target.closest("button").name
                               )
                             );
-                          }}
-                        >
+                          }}>
                           {currentQuestion.options[1].label}
                         </Button>
                       </Link>
@@ -127,8 +124,7 @@ const Question = () => {
                             )
                           );
                           setQuestionNum(questionNum + 1);
-                        }}
-                      >
+                        }}>
                         {currentQuestion.options[1].label}
                       </Button>
                     )}
