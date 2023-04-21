@@ -96,7 +96,7 @@ const LoginModal = () => {
       );
 
       const data = await res.json();
-      dispatch(authActions.isLoggedIn(data.data));
+      await dispatch(authActions.isLoggedIn(data.data));
     } catch (err) {
       console.log("err", err);
     }
