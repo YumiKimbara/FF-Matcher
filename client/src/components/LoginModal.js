@@ -47,6 +47,7 @@ const LoginModal = () => {
         // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/login",
         {
           method: "POST",
+          mode: "cors",
           headers: { "content-type": "application/json" },
           body: JSON.stringify({ email: email, password: password }),
           credentials: "include",
@@ -55,13 +56,15 @@ const LoginModal = () => {
 
       if (res.status === 201) {
         history.goBack("/");
-        await res.json({ message: "login succeeded!" });
-
         await fetchSessionfromDB();
+        const data = await res.json({ message: "login succeeded!" });
+        console.log("data", data);
       } else {
         const data = await res.json();
+        console.log("data", data);
         !data.error && history.goBack("/");
         setError(data.error);
+        return JSON.parse(data);
         // await fetch(
         //   // "https://ff-matcher-api.onrender.com/api/login",
         //   "http://localhost:3001/login",
@@ -90,6 +93,7 @@ const LoginModal = () => {
         // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/me",
         {
           credentials: "include",
+          mode: "cors",
         }
       );
 
