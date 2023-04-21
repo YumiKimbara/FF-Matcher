@@ -56,15 +56,20 @@ const LoginModal = () => {
       if (res.status === 201) {
         history.goBack("/");
         await fetchSessionfromDB();
+        const data = await res.json();
+        console.log("res2", data);
       } else {
-        await fetch(
-          // "https://ff-matcher-api.onrender.com/api/login",
-          "http://localhost:3001/login",
-          // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/login",
-          {
-            credentials: "include",
-          }
-        );
+        const data = await res.json();
+        !data.error && history.goBack("/");
+        setError(data.error);
+        // await fetch(
+        //   // "https://ff-matcher-api.onrender.com/api/login",
+        //   "http://localhost:3001/login",
+        //   // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/login",
+        //   {
+        //     credentials: "include",
+        //   }
+        // );
       }
 
       const data = await res.json();
