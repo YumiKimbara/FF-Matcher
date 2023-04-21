@@ -55,9 +55,9 @@ const LoginModal = () => {
 
       if (res.status === 201) {
         history.goBack("/");
+        await res.json({ message: "login succeeded!" });
+
         await fetchSessionfromDB();
-        const data = await res.json();
-        console.log("res2", data);
       } else {
         const data = await res.json();
         !data.error && history.goBack("/");
