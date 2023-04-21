@@ -31,6 +31,7 @@ app.use(
     origin: ["https://ff-matcher.onrender.com", "http://localhost:3000"],
     // origin: "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com",
     credentials: true,
+    allowedHeaders: ["Content-Type"],
   })
 );
 
