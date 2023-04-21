@@ -66,7 +66,7 @@ const LoginModal = () => {
         // return JSON.parse(data);
         // await fetch(
         //   // "https://ff-matcher-api.onrender.com/api/login",
-        //   "http://localhost:3001/login",
+        //   "s/login",
         //   // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/login",
         //   {
         //     credentials: "include",
