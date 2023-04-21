@@ -8,8 +8,8 @@ exports.getResults = async (req, res) => {
       .status(200)
       .set(
         "Access-Control-Allow-Origin",
-        "https://ff-matcher.onrender.com"
-        // "http://localhost:3000"
+        "https://ff-matcher.onrender.com",
+        "http://localhost:3000"
       )
       .set("Access-Control-Allow-Credentials", "true")
       .json(results);
