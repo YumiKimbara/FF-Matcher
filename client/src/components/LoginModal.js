@@ -72,10 +72,10 @@ const LoginModal = () => {
         // );
       }
 
-      const data = await res.json();
-      console.log("res2", data);
-      !data.error && history.goBack("/");
-      setError(data.error);
+      // const data = await res.json();
+      // console.log("res2", data);
+      // !data.error && history.goBack("/");
+      // setError(data.error);
     } catch (err) {
       console.log("res3", err);
       console.log("err", err);
