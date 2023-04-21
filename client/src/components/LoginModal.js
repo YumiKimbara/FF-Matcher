@@ -39,62 +39,60 @@ const LoginModal = () => {
   const toLogIn = useRouteMatch("/login")?.isExact ?? false;
   const materialUIClasses = useStyles();
 
-  const postLoginData = () => {
-    fetch(
-      // "https://ff-matcher-api.onrender.com/api/login",
-      "http://localhost:3001/login",
-      // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/login",
-      {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-        credentials: "include",
-      }
-    )
-      .then((res) => {
-        if (res.status === 201) {
-          history.goBack("/");
-          fetchSessionfromDB();
-        } else {
-          fetch(
-            // "https://ff-matcher-api.onrender.com/api/login",
-            "http://localhost:3001/login",
-            // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/login",
-            {
-              credentials: "include",
-            }
-          );
+  const postLoginData = async () => {
+    try {
+      const res = await fetch(
+        // "https://ff-matcher-api.onrender.com/api/login",
+        "http://localhost:3001/login",
+        // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/login",
+        {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ email: email, password: password }),
+          credentials: "include",
         }
-        res.json().then((res) => {
-          !res.error && history.goBack("/");
-          setError(res.error);
-        });
-      })
-      .catch((err) => {
-        console.log("err", err);
-      });
+      );
+
+      if (res.status === 201) {
+        history.goBack("/");
+        await fetchSessionfromDB();
+      } else {
+        await fetch(
+          // "https://ff-matcher-api.onrender.com/api/login",
+          "http://localhost:3001/login",
+          // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/login",
+          {
+            credentials: "include",
+          }
+        );
+      }
+
+      const data = await res.json();
+      console.log("res2", data);
+      !data.error && history.goBack("/");
+      setError(data.error);
+    } catch (err) {
+      console.log("res3", err);
+      console.log("err", err);
+    }
   };
 
-  const fetchSessionfromDB = () => {
-    fetch(
-      // "https://ff-matcher-api.onrender.com/api/me",
-      "http://localhost:3001/me",
-      // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/me",
-      {
-        credentials: "include",
-      }
-    )
-      .then((res) => {
-        res.json().then((res) => {
-          dispatch(authActions.isLoggedIn(res.data));
-        });
-      })
-      .catch((err) => {
-        console.log("err", err);
-      });
+  const fetchSessionfromDB = async () => {
+    try {
+      const res = await fetch(
+        // "https://ff-matcher-api.onrender.com/api/me",
+        "http://localhost:3001/me",
+        // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/me",
+        {
+          credentials: "include",
+        }
+      );
+
+      const data = await res.json();
+      dispatch(authActions.isLoggedIn(data.data));
+    } catch (err) {
+      console.log("err", err);
+    }
   };
 
   useEffect(() => {
