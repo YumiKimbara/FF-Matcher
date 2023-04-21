@@ -14,7 +14,7 @@ const User = require("./models/user");
 const app = express();
 dotenv.config();
 
-//Store session in the MongoDBStore
+// Store session in the MongoDBStore
 const store = new MongoDBStore({
   uri: process.env.MONGODB_URI,
   collection: "sessions",
