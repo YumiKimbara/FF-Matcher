@@ -54,9 +54,6 @@ const LoginModal = () => {
         }
       );
 
-      const data = res.json();
-      console.log("loginData", data);
-
       if (res.status === 201) {
         history.goBack("/");
         await fetchSessionfromDB();
