@@ -3,7 +3,7 @@ const User = require("../models/user");
 
 exports.getMe = (req, res) => {
   console.log(res, "Response");
-  res.status(200).json({ req: req.session });
+
   if (req.session.user) {
     res.status(200).json({ data: req.session.user });
   } else {
@@ -94,7 +94,9 @@ exports.postSignup = (req, res, next) => {
             await user.save();
             req.session.user = { email, name };
             console.log("user was created");
-            res.status(201).end();
+            // res.status(201).end();
+            res.status(201).json({ data: req.session.user });
+
             return;
           })
       );
