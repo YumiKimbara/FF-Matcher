@@ -2,7 +2,7 @@ const bcrypt = require("bcryptjs");
 const User = require("../models/user");
 
 exports.getMe = (req, res) => {
-  console.log(res, "Response")
+  console.log(res, "Response");
   if (req.session.user) {
     res.status(200).json({ data: req.session.user });
   } else {
@@ -12,7 +12,7 @@ exports.getMe = (req, res) => {
 };
 
 exports.postLogin = (req, res, next) => {
-    console.log(res, "Response")
+  console.log(res, "Response");
 
   if (req.session.user) {
     res.status(400).json({ error: "You've already logged in." }).end();
