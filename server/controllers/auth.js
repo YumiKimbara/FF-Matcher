@@ -39,7 +39,8 @@ exports.postLogin = (req, res, next) => {
         if (doMatch) {
           req.session.user = { email: user.email, name: user.name };
           console.log("req.session", req.session);
-          res.status(201).end();
+          res.status(201).json({ data: req.session.user });
+          // res.status(201).end();
           return;
         }
 
@@ -94,8 +95,7 @@ exports.postSignup = (req, res, next) => {
             await user.save();
             req.session.user = { email, name };
             console.log("user was created");
-            // res.status(201).end();
-            res.status(201).json({ data: req.session.user });
+            res.status(201).end();
 
             return;
           })
