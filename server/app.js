@@ -13,6 +13,7 @@ const User = require("./models/user");
 
 const app = express();
 dotenv.config();
+// this trust proxy will allow you to access req.session after deploy
 app.set("trust proxy", 1);
 
 // Store session in the MongoDBStore
