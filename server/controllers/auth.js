@@ -13,11 +13,11 @@ exports.getMe = (req, res) => {
       if (err) {
         console.error(err);
         res.status(500).end();
-        return;
+        // return;
       }
       if (session) {
         res.status(200).json({ data: session.user });
-        return;
+        // return;
       }
     });
   } else {
