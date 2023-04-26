@@ -6,8 +6,8 @@ exports.getMe = (req, res) => {
 
   // if (req.session.user) {
   //   res.status(200).json({ data: req.session.user });
-  if (req.session.id) {
-    req.sessionStore.get(req.session.id, (err, session) => {
+  if (req.sessionId) {
+    req.sessionStore.get(req.sessionId, (err, session) => {
       if (err) {
         console.error(err);
         res.status(500).end();
