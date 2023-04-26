@@ -3,7 +3,6 @@ const User = require("../models/user");
 
 exports.getMe = (req, res) => {
   // console.log(res, "Response");
-  console.log("req.sessionId", req.sessionID, req.sessionStore);
 
   if (req.session.user) {
     res.status(200).json({ data: req.session.user });
