@@ -97,14 +97,15 @@ const LoginModal = () => {
         }
       );
 
-      // const data = await res.json();
+      const data = await res.json();
 
-      const data = await res.text();
-      console.log("data", data);
-      if (!data) return;
-      const jsonData = JSON.parse(data);
-      console.log("jsonData", jsonData);
-      await dispatch(authActions.isLoggedIn(jsonData.data));
+      // const data = await res.text();
+      // console.log("data", data);
+      // if (!data) return;
+      // const jsonData = JSON.parse(data);
+      // console.log("jsonData", jsonData);
+      // await dispatch(authActions.isLoggedIn(jsonData.data));
+      await dispatch(authActions.isLoggedIn(data.data));
     } catch (err) {
       console.log("err", err);
     }
