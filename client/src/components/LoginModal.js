@@ -42,7 +42,6 @@ const LoginModal = () => {
   const postLoginData = async () => {
     try {
       const res = await fetch(
-        // "https://ff-matcher-api.onrender.com/api/login",
         // "http://localhost:3001/login",
         "https://ff-matcher-api.onrender.com/login",
         // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/login",
@@ -57,30 +56,12 @@ const LoginModal = () => {
       if (res.status === 201) {
         history.goBack("/");
         await fetchSessionfromDB();
-        // const data = await res.json();
-        // console.log("data", data);
-      } else {
-        // const data = await res.json();
-        // console.log("data", data);
-        // !data.error && history.goBack("/");
-        // setError(data.error);
-        // return JSON.parse(data);
-        // await fetch(
-        //   // "https://ff-matcher-api.onrender.com/api/login",
-        //   "s/login",
-        //   // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/login",
-        //   {
-        //     credentials: "include",
-        //   }
-        // );
       }
 
-      // const data = await res.json();
-      // console.log("res2", data);
-      // !data.error && history.goBack("/");
-      // setError(data.error);
+      const data = await res.json();
+      !data.error && history.goBack("/");
+      setError(data.error);
     } catch (err) {
-      console.log("res3", err);
       console.log("err", err);
     }
   };
@@ -88,7 +69,6 @@ const LoginModal = () => {
   const fetchSessionfromDB = async () => {
     try {
       const res = await fetch(
-        // "https://ff-matcher-api.onrender.com/api/me",
         // "http://localhost:3001/me",
         "https://ff-matcher-api.onrender.com/me",
         // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/me",
@@ -97,13 +77,10 @@ const LoginModal = () => {
         }
       );
 
-      // const data = await res.json();
-
       const data = await res.text();
       if (!data) return;
       const jsonData = JSON.parse(data);
       await dispatch(authActions.isLoggedIn(jsonData.data));
-      // await dispatch(authActions.isLoggedIn(data.data));
     } catch (err) {
       console.log("err", err);
     }

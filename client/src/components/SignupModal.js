@@ -52,7 +52,6 @@ const SignupModal = () => {
       !passwordError &&
       !emptyError &&
       fetch(
-        // "https://ff-matcher-api.onrender.com/api/signup",
         // "http://localhost:3001/signup",
         "https://ff-matcher-api.onrender.com/signup",
         // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/signup",
@@ -74,7 +73,6 @@ const SignupModal = () => {
             fetchSessionfromDB();
           } else {
             fetch(
-              // "https://ff-matcher-api.onrender.com/api/signup",
               // "http://localhost:3001/signup",
               "https://ff-matcher-api.onrender.com/signup",
               // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/signup",
@@ -102,7 +100,6 @@ const SignupModal = () => {
 
   const fetchSessionfromDB = () => {
     fetch(
-      // "https://ff-matcher-api.onrender.com/api/me",
       // "http://localhost:3001/me",
       "https://ff-matcher-api.onrender.com/me",
       // "http://ec2-35-183-29-247.ca-central-1.compute.amazonaws.com/api/me",
