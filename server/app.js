@@ -13,6 +13,7 @@ const User = require("./models/user");
 
 const app = express();
 dotenv.config();
+app.set("trust proxy", 1);
 
 // Store session in the MongoDBStore
 const store = new MongoDBStore({
