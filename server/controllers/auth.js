@@ -2,12 +2,14 @@ const bcrypt = require("bcryptjs");
 const User = require("../models/user");
 
 exports.getMe = (req, res) => {
-  console.log(res, "Response");
+  // console.log(res, "Response");
+  console.log("req.sessionId", req.sessionID, req.sessionStore);
 
   // if (req.session.user) {
   //   res.status(200).json({ data: req.session.user });
-  if (req.session.id) {
-    req.sessionStore.get(req.session.id, (err, session) => {
+  if (req.sessionID) {
+    req.sessionStore.get(req.sessionID, (err, session) => {
+      console.log("session", session);
       if (err) {
         console.error(err);
         res.status(500).end();
@@ -25,7 +27,7 @@ exports.getMe = (req, res) => {
 };
 
 exports.postLogin = (req, res, next) => {
-  console.log(res, "Response");
+  // console.log(res, "Response");
 
   if (req.session.user) {
     res.status(400).json({ error: "You've already logged in." }).end();
@@ -50,7 +52,6 @@ exports.postLogin = (req, res, next) => {
       return bcrypt.compare(password, user.password).then(async (doMatch) => {
         if (doMatch) {
           req.session.user = { email: user.email, name: user.name };
-          console.log("req.session", req.session);
           res.status(201).end();
           return;
         }
@@ -81,7 +82,7 @@ exports.postSignup = (req, res, next) => {
   User.findOne({ email: email })
     .then((userDoc) => {
       if (userDoc) {
-        console.log("user doc", userDoc);
+        // console.log("user doc", userDoc);
         res
           .status(400)
           .json({
