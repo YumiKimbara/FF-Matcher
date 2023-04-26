@@ -19,6 +19,4 @@ React, Redux, Node.js, Express.js, MongoDB, Material UI, aws
 
 ### Website
 
-Check the website: [DEMO]()
-
-- This website is temporarily inaccessible.
+Check the website: [DEMO](https://ff-matcher.onrender.com/)
