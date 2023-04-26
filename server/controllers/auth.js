@@ -5,21 +5,21 @@ exports.getMe = (req, res) => {
   // console.log(res, "Response");
   console.log("req.sessionId", req.sessionID, req.sessionStore);
 
-  // if (req.session.user) {
-  //   res.status(200).json({ data: req.session.user });
-  if (req.sessionID) {
-    req.sessionStore.get(req.sessionID, (err, session) => {
-      console.log("session", session);
-      if (err) {
-        console.error(err);
-        res.status(500).end();
-        // return;
-      }
-      if (session) {
-        res.status(200).json({ data: session.user });
-        // return;
-      }
-    });
+  if (req.session.user) {
+    res.status(200).json({ data: req.session.user });
+    // if (req.sessionID) {
+    //   req.sessionStore.get(req.sessionID, (err, session) => {
+    //     console.log("session", session);
+    //     if (err) {
+    //       console.error(err);
+    //       res.status(500).end();
+    //       // return;
+    //     }
+    //     if (session) {
+    //       res.status(200).json({ data: session.user });
+    //       // return;
+    //     }
+    //   });
   } else {
     res.status(404).end();
   }
